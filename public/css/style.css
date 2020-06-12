@@ -1,0 +1,960 @@
+/************************** General **************************/
+*
+{
+    margin: 0;
+    padding: 0;
+    text-decoration: none!important;
+    list-style: none;
+}
+
+body{
+    background-color: #eee;
+}
+
+p
+{
+    margin: 0!important;
+    padding: 0!important;
+    font-family: 'HelveticaNeue-Medium';
+}
+
+.alert 
+{
+    position: absolute;
+    margin-bottom: 0!important;
+    z-index: 2;
+    width: 100%;
+}
+
+/************************** NavBar **************************/
+
+ul a
+{
+    color: #fff!important;
+    font-size: 14px!important;
+}
+
+.navbar-expand-lg .navbar-nav .navTransparent
+{
+    border-color: #fff!important;
+    background-color: transparent!important;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #e5eef3bf!important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover 
+{
+    background-color: #5CAFED!important;
+}
+
+nav#navbar_bleu
+{
+    background-image: linear-gradient(228deg, #001E5A 0%, #67C1FF 100%);
+}
+
+#navLogo
+{
+    font-family: 'HelveticaNeue-CondensedBlack';
+    letter-spacing: 1.5px;
+}
+
+/************************** Banner **************************/
+
+#banner
+{
+    background-image: url(../Images/Banniere.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 38rem;
+}
+
+#banner .row
+{
+    margin: 0!important;
+    padding: 0!important;
+    text-decoration: none;
+    list-style: none;
+}
+
+#text-left h1
+{
+    font-family: 'HelveticaNeue-CondensedBlack';
+    font-size: 50px!important;
+    color: #FFFFFF;
+    letter-spacing: 2.75px;
+}
+
+.find_button
+{
+    background: #FFFFFF!important;
+    font-family: 'HelveticaNeue-CondensedBlack';
+    font-size: 14px!important;
+    letter-spacing: 0.9px;
+    margin-top: 1rem!important;
+    color: #5CAFED!important;
+}
+
+/************************** HomeIcons **************************/
+
+section#homeIcon 
+{
+    margin-top: 7rem!important;
+    margin-bottom: 7rem;
+}
+
+.home_icon_text
+{
+    font-family: 'HelveticaNeue-CondensedBold';
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+/************************** Actualités **************************/
+
+#Actualités h2
+{
+    font-family: 'HelveticaNeue-CondensedBlack';
+    font-size: 40px!important;
+    letter-spacing: 0.9px;
+}
+
+.card-style
+{
+    border: none!important;
+}
+
+.carousel-indicators
+{
+    top: 22rem!important;
+    padding-bottom: 2rem;
+}
+
+.carousel-indicators li
+{
+    background-color: grey!important;
+    width: 12px!important;
+    height: 12px!important;
+    border-radius: 50%!important;
+    opacity: 0.15!important;
+}
+
+.carousel-indicators .active
+{
+    background-color: #5CAFED!important;
+    opacity: 1!important;
+}
+
+.date-card
+{
+    font-family: 'HelveticaNeue-Medium';
+    font-size: 12px;
+    color: rgba(0, 0, 0, .5);
+    line-height: 28px;
+}
+
+.card-description
+{
+    padding-left: 0!important;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .7);
+    line-height: 25px;
+}
+
+.card-description-orange
+{
+    color: #5CAFED!important;
+}
+
+#HomePageCard
+{
+    border-radius: 0.80rem 0.80rem 0.80rem 0.80rem;
+    width: 18rem!important;
+}
+
+#HomeSkateImg
+{
+    min-width: 18rem!important;
+    max-width: 18rem!important;
+    height: 10rem!important;
+    position: relative;
+    cursor: pointer;
+}
+
+#HomeSkateImg img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0.80rem 0.80rem 0rem 0rem;
+    cursor: pointer;
+}
+
+#HomeSkateImg::before
+{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    background-image: linear-gradient(228deg, #001E5A 0%, #67C1FF 100%);
+    box-shadow: .5rem .5rem .3rem 1px rgba(0, 0, 0, .05);
+    border-radius: .5rem;
+}
+
+/************************** Map Page **************************/
+
+#map_image
+{
+    margin-top: 10vh;
+}
+
+#map_image path
+{
+    fill: rgb(183, 200, 206);
+    stroke: #fff;
+    stroke-width: 1px;
+    transition-duration: 300ms;
+    cursor: pointer;
+}
+
+#map_image path:hover 
+{
+    fill: #5CAFED;
+    transform: translateX(1px);
+}
+
+/************************** Skatepark Région **************************/
+
+#listDeTri
+{
+    width: 110px!important;
+    margin-bottom: -3rem;
+}
+
+#blogPost
+{
+    font-family: 'HelveticaNeue-Medium';
+    max-width: 26rem!important;
+    padding: 1rem!important;
+    background-color: #fff;
+    box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+}
+
+#blogPostImg
+{
+    min-width: 12rem!important;
+    max-width: 12rem!important;
+    height: 12rem!important;
+    transform: translateX(-3rem);
+    position: relative;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+
+#blogPostImg:hover 
+{
+    transform: scale(1.05) translateX(-2.8rem);
+}
+
+#blogPostImg img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: .5rem;
+}
+
+#blogPostImg::before
+{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
+    background-image: linear-gradient(228deg, #001E5A 0%, #67C1FF 100%);
+    box-shadow: .5rem .5rem .3rem 1px rgba(0, 0, 0, .05);
+    border-radius: .5rem;
+}
+
+#postInfo
+{
+    transform: translateX(-0.9rem);
+}
+
+#blogPostDate span 
+{
+    font-size: 0.6rem;
+    display: block;
+    color: rgba(0, 0, 0, .5);
+    font-weight: 900;
+}
+
+#blogPostTitle
+{
+    font-size: 0.8rem;
+    margin: 0.5rem 0 1rem;
+    text-transform: uppercase;
+    color: #5CAFED;
+    font-weight: 900;
+}
+
+#blogPostText
+{
+    margin-bottom: 1.4rem!important;
+    font-size: 0.6rem;
+    color: rgba(0, 0, 0, .7);
+}
+
+#blogPostBtn
+{
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #000;
+    border-radius: .5rem;
+}
+
+#blogPostBtn:hover 
+{
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+/************************** SkatePark Post Page **************************/
+#favorisIcon
+{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#coeurPlein
+{
+    color: rgb(255, 0, 98);
+}
+
+#SkateParkTitle h1
+{
+    font-size: 25px;
+    font-family: 'HelveticaNeue-Medium';
+    padding: 20px 0 10px;
+    border-bottom: 2px solid #b3b0b0;
+}
+
+#SkateparkName
+{
+    color: #5CAFED;
+}
+
+.notes_Container i
+{
+    font-size: 2rem;
+    cursor: pointer;
+    color: gold;
+}
+
+#SkateParkDescriptionLeft h2,#SkateParkDescriptionRight h2, #SkateParkDescriptionMap h2, #SkateparkCommentaireForm h2
+{
+    font-size: 20px;
+    color: #eee;
+    padding: 2px;
+    background-color: #222;
+}
+
+#UserCommentImage
+{
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #343a40;
+    border-radius: 50%;
+    transition-duration: 500ms; 
+}
+
+#CommentForm h2
+{
+    font-size: 20px;
+    color: #eee;
+    padding: 2px;
+    background-color: #5CAFED;
+}
+
+#CommentForm, #inputCommentForm
+{
+    border: 2px solid black!important;
+    background-color: #eee;
+}
+
+#inputCommentForm
+{
+    border-width: 1px!important;
+}
+
+#connectPublishComment
+{
+    font-family: 'HelveticaNeue-CondensedBlack';
+    font-size: 20px;
+}
+
+/************************** LoginPage **************************/
+
+.form_bg
+{
+    display: flex;
+    align-items: center;
+}
+
+.form_horizontal
+{
+    text-align: center;
+}
+
+#form_container
+{
+    margin-top: 15vh;
+}
+
+.form_horizontal .form_icon
+{
+    font-size: 100px;
+    line-height: 85px;
+    margin: 0 0 13px;
+    color: #222;
+}
+
+.form_horizontal .title 
+{
+    font-size: 23px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 35px 0;
+    font-family: 'HelveticaNeue-Medium';
+    color: #5CAFED;
+}
+
+.form_horizontal .form_group
+{
+    margin: 0 0 10px;
+    position: relative;
+}
+
+.form_horizontal .input-icon
+{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #5CAFED;
+}
+
+.form_horizontal .form-control
+{
+    color: #000;
+    background-color: #e9ecef;
+    font-size: 13px;
+    letter-spacing: 1px;
+    height: 37px;
+    padding: 2px 15px 2px 35px;
+    border: none;
+    border-radius: 50px;
+}
+
+.form_horizontal .form-control::placeholder
+{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.form_horizontal .btn
+{
+    color: #FFF;
+    background-color: #222;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.form_horizontal .btn:hover {
+    color: #5CAFED;
+    text-decoration: none;
+}
+
+#form_container
+{
+    margin-top: 20vh;
+}
+
+/************************** ProfilPage **************************/
+
+#profilBanner
+{
+    background: #5CAFED;
+}
+
+#profilBanner img
+{
+    width: 100%!important;
+    opacity: 0.9;
+}
+
+#ProfiBar 
+{
+    height: 3rem;
+}
+
+#UserImage
+{
+    width: 140px;
+    height: 140px;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    margin-left: 12%;
+    margin-bottom: 5.2rem;
+    border: 2px solid #343a40;
+    border-radius: 50%;
+    transition-duration: 500ms;
+}
+
+#profilInputImage
+{
+    background-color: transparent!important;
+    border: none!important;
+    padding: 0!important;
+}
+
+#profilPseudo
+{
+    font-family: 'HelveticaNeue-CondensedBold'!important;
+    color: #5CAFED;
+}
+
+#profilTitle
+{
+    font-family: 'HelveticaNeue-Medium';
+    font-size: 1.3rem;
+}
+
+#ProfilFormBtn
+{
+    background-color: #222;
+    border: none;
+    color: #fff;
+    opacity: 1;
+}
+
+#profilSessionInfos
+{
+    color: #5CAFED;
+}
+
+#ProfilCommentaire .card-body, #SkateparkCommentaire .card-body
+{
+    border: none!important;
+    background-color: #dfe5e6;
+}
+
+
+/************************** SkatePark Manager **************************/
+
+thead#adminTab
+{
+    background-color: #dbd8d8;
+}
+
+#adminTabRow
+{
+    color: #222;
+}
+
+#adminTabRow tr td
+{
+    font-family: 'HelveticaNeue-Medium';
+}
+
+#adminTabRow tr td, #adminTab tr th
+{
+    vertical-align: middle!important;
+}
+
+#adminTab tr th
+{
+    font-family: 'HelveticaNeue-bold';
+}
+
+#addSkateParkBtn
+{
+    background-color: #5CAFED;
+    color: #eee;
+}
+
+.icon_container 
+    {
+        width: 40%!important;
+    }
+
+
+/************************** AddEditForm Page **************************/
+
+#AddEditForm
+{
+    margin-top: 12vh;
+}
+
+
+/**************************  CommentaireManager  **************************/
+
+#containerCommentaireManager
+{
+    margin-top: 8vh;
+}
+
+
+/************************** MediaQueries **************************/
+
+@media (min-width: 1320px)
+{
+    #blogPost 
+    {
+        transform: translateX(15px);
+    }
+}
+
+@media (min-width: 992px)
+{
+    #profilInfosContainer
+    {
+        width: 300px!important;
+    }
+}
+
+@media (max-width: 992px)
+{
+    /**************** NavBar ****************/
+
+    .navbar-expand-lg .navbar-nav .dropdown-menu 
+    {
+        border: none;
+    }
+
+    .navbar-expand-lg .navbar-nav .navBlack
+    {
+        background-color: transparent!important;
+    }
+
+    /**************** Banner ****************/
+
+    .connected_button {
+        margin-left: -18px;
+    }
+
+    /**************** Actualités ****************/
+
+    .card-description
+    {
+        padding: 0!important;
+    }
+
+    .card-body 
+    {
+        padding-right: 0!important;
+    }
+
+    .carousel-indicators
+    {
+        top: 65rem!important;
+    }
+
+    /**************** Template Région ****************/
+    #blogPost
+    {
+        padding: 1.8rem!important;
+        flex-direction: column;
+    }
+
+    #blogPostImg
+    {
+        min-width: 20rem!important;
+        max-width: 20rem!important;
+        height: 10rem!important;
+        transform: translate(0, -3.5rem);
+    }
+
+    #blogPostImg:hover 
+    {
+        transform: scale(1.05) translateY(-40px);
+    }
+
+    #postInfo
+    {
+        transform: translateX(0);
+        transform: translateY(-10px);
+    }
+
+    #blogPostDate
+    {
+        display: flex;
+        justify-content: center;
+    }
+
+    #blogPostDate span 
+    {
+        font-size: 0.8rem;
+    }
+
+    #blogPostTitle
+    {
+        font-size: 1rem;
+        margin: 0.5rem 0 1rem;
+    
+    }
+
+    #blogPostText
+    {
+        margin-bottom: 1.4rem!important;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    #blogPostBtn
+    {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.6rem;
+    }
+
+    .card-body
+    {
+        padding-left: 0!important;
+    }
+
+}
+
+@media (max-width: 768px)
+{
+    #form_container
+    {
+        margin-top: 5vh;
+    }
+
+    #UserImage
+    {
+        width: 115px!important;
+        height: 115px!important;
+        margin-bottom: 4rem;
+    }
+
+    #ProfiBar p
+    {
+        font-size: 0.9rem!important;
+        transition-duration: 500ms;
+    }
+}
+
+@media (min-width: 768px)
+{
+    /**************** LoginPage ****************/
+    #separation
+    {
+        height: 65vh;
+        position: relative;
+        border: 0.5px solid lightgrey;
+        right: 50%;
+        top: 14vh;
+    }
+
+}
+
+@media screen and (max-width: 475px)
+{
+    #UserImage
+    {
+        width: 90px!important;
+        height: 90px!important;
+        margin-bottom: 3rem;
+        margin-left: 5%;
+    }
+
+    #ProfiBar p
+    {
+        font-size: 0.8rem!important;
+        margin-left: 1.5rem!important;
+    }
+}
+
+@media (max-width: 438px)
+{
+    /**************** Skatepark Admin ****************/
+    .icon_container
+    {
+        width: 100%;
+    }
+
+    .center_form
+    {
+        text-align: center!important;
+    }
+}
+
+@media screen and (max-width: 415px)
+{
+    /**************** HomeIcons ****************/
+    #text-left
+    {
+        padding: 0!important;
+    }
+
+    #home_icon_img {
+        flex: 0 0 90%!important;
+        max-width: 90%!important;
+    }
+
+    /**************** Skatepark Admin ****************/
+    .icon_btn
+    {
+        margin-bottom: 1rem;
+    }
+
+    .icon_container 
+    {
+        width: 25%!important;
+    }
+
+    .iconCommentaireManager
+    {
+        width: 32%!important;
+    }
+
+    /**************** LoginPage ****************/
+    #form_container
+    {
+        margin-top: 5vh;
+    }
+
+    .form_horizontal .form_icon 
+    {
+        font-size: 80px;
+    }
+
+    .form_horizontal .title 
+    {
+        font-size: 20px;
+        margin: 0 0 25px 0;
+    }
+
+    /**************** Template Région ****************/
+    #blogPost
+    {
+        padding: 1.8rem!important;
+        flex-direction: column;
+    }
+
+    #blogPostImg
+    {
+        min-width: 19rem!important;
+        max-width: 19rem!important;
+        height: 8rem!important;
+        transform: translate(0, -3.5rem);
+    }
+
+    #listDeTri
+    {
+        margin-bottom: -1.5rem;
+    }
+    /**************** Skatepark Post Template ****************/
+    #favorisIcon
+    {
+        font-size: 20px;
+        cursor: pointer;
+        margin-right: 2rem!important;
+    }
+
+    #SkateParkDescriptionLeft
+    {
+        padding: 0;
+        text-align: center;
+    }
+
+    #SkateParkDescriptionRight, #SkateParkDescriptionMap, #SkateparkCommentaireForm, #SkateparkCommentaire
+    {
+        margin-left: 1rem!important;
+        margin-right: 1rem!important;
+    }
+    
+
+    #SkateParkDescription p 
+    {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 375px)
+{
+    /**************** HomeIcons ****************/
+    #text-left
+    {
+        padding-right: 15px!important;
+        padding-left: 15px!important;
+    }
+
+    /**************** Actualités ****************/
+    .card-description 
+    {
+        font-size: 18px!important;
+        line-height: 28px!important;
+    }
+
+    #UserImage
+    {
+        width: 80px!important;
+        height: 80px!important;
+        margin-bottom: 2rem;
+        margin-left: 0;
+    }
+
+    #ProfiBar p
+    {
+        font-size: 0.7rem!important;
+        margin-left: 1.2rem!important;
+    }
+
+    /**************** Skatepark Post ****************/
+    #SkateParkTitle h1 
+    {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 325px)
+{
+    /**************** Template Région ****************/
+    #blogPostImg
+    {
+        min-width: 16rem!important;
+        max-width: 16rem!important;
+    }
+}
