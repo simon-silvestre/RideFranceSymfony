@@ -243,7 +243,7 @@ section#homeIcon
 #blogPost
 {
     font-family: 'HelveticaNeue-Medium';
-    max-width: 26rem!important;
+    width: 26rem!important;
     padding: 1rem!important;
     background-color: #fff;
     box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
@@ -419,6 +419,12 @@ section#homeIcon
     align-items: center;
 }
 
+.form_bg label
+{
+    display: none;
+}
+
+
 .form_horizontal
 {
     text-align: center;
@@ -466,7 +472,7 @@ section#homeIcon
 .form_horizontal .form-control
 {
     color: #000;
-    background-color: #e9ecef;
+    background-color: #fafafa;
     font-size: 13px;
     letter-spacing: 1px;
     height: 37px;

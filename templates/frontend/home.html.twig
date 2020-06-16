@@ -30,7 +30,7 @@
                             <a class="nav-link mr-lg-3" href="/">ACCUEIL <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mr-lg-3" href="/SkateParksRegions">SKATEPARKS</a>
+                            <a class="nav-link mr-lg-3" href="{{ path('SkateParksMap') }}">SKATEPARKS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mr-lg-3" href="index.php?action=Contact">CONTACT</a>
@@ -68,7 +68,7 @@
                         <a href="index.php?action=Logout" class="btn btn-outline-light connected_button">SE
                             DECONNECTER</a>
                         <?php } else{?>
-                        <a href="index.php?action=LoginPage" class="btn btn-outline-light connected_button">SE
+                        <a href="{{ path('security_connexion') }}" class="btn btn-outline-light connected_button">SE
                             CONNECTER</a>
                         <?php }?>
                     </form>
@@ -78,7 +78,7 @@
             <div class="row justify-content-around">
                 <div class="col-lg-5 text-center text-lg-left mt-lg-5 ml-md-4" id="text-left">
                     <h1 class="text-center text-lg-left mt-lg-5">Envie de rider ?</br>trouve un skatepark </h1>
-                    <a href="index.php?action=SkateParks" class="btn find_button rounded-pill px-4 py-2">Trouver un
+                    <a href="{{ path('SkateParksMap') }}" class="btn find_button rounded-pill px-4 py-2">Trouver un
                         skatepark</a>
                 </div>
                 <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mt-lg-5" id="image-container">
@@ -121,11 +121,10 @@
 
                     {% for skatepark in skateparks %}
                     <div class="card card-style mb-5" id="HomePageCard">
-                        <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="HomeSkateImg"><img
-                                src="Images/MiniatureSkateParks/{{ skatepark.image }}" alt="..."></a>
+                        <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="HomeSkateImg"><img src="Images/MiniatureSkateParks/{{ skatepark.image }}" alt="..."></a>
                         <div class="card-body">
                             <p class="card-text date-card"><strong>{{ skatepark.ville }}</strong> | 10/03/2020</p>
-                            <p class="card-description col-12 col-lg-11">{{ skatepark.contenu }}</p>
+                            <p class="card-description col-12 col-lg-11">{{ skatepark.contenu | slice(0, 50) }}...</p>
                         </div>
                     </div>
                     {% endfor %}

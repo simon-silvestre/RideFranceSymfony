@@ -11,10 +11,10 @@ class FrontendController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function showhome()
     {
         $repo = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skateparks = $repo->findAll();
+        $skateparks = $repo->findBy(array(), array('creation_date' => 'desc'), 3, 0);
 
         return $this->render('frontend/home.html.twig', [
             'skateparks' => $skateparks
@@ -35,10 +35,23 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/SkateParksRegions", name="SkateParksRegions")
+     * @Route("/SkateParksMap", name="SkateParksMap")
      */
-    public function SkateParksRegions()
+    public function showSkateParksMap()
     {
         return $this->render('frontend/SkateParkMap.html.twig');
+    }
+
+    /**
+     * @Route("/SkateParksRegion/{region}", name="SkateParksRegion")
+     */
+    public function showSkateParksRegion($region)
+    {
+        $repo = $this->getDoctrine()->getRepository(SkateParks::class);
+        $skatepark = $repo->findBy(array('region' => $region), array('creation_date' => 'desc'));
+
+        return $this->render('frontend/SkateParksRegion.html.twig', [
+            'skatepark' => $skatepark
+        ]);
     }
 }
