@@ -2,13 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UsersRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
+ * @UniqueEntity(
+ *  fields= {"email"},
+ *  message= "L'email ou le pseudo que vous avez indiquez est deja utilisé !"
+ * )
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -29,18 +38,19 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $pseudo;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mdp;
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -48,9 +58,25 @@ class Users
     private $imageprofil;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="username", orphanRemoval=true)
+     */
+    private $favoris;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\Column(type="boolean")
      */
     private $admin;
+
+    public function __construct()
+    {
+        $this->favoris = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -93,26 +119,26 @@ class Users
         return $this;
     }
 
-    public function getPseudo(): ?string
+    public function getUsername(): ?string
     {
-        return $this->pseudo;
+        return $this->username;
     }
 
-    public function setPseudo(string $pseudo): self
+    public function setUsername(string $username): self
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getMdp(): ?string
+    public function getPassword(): ?string
     {
-        return $this->mdp;
+        return $this->password;
     }
 
-    public function setMdp(string $mdp): self
+    public function setPassword(string $password): self
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
 
         return $this;
     }
@@ -129,12 +155,83 @@ class Users
         return $this;
     }
 
+    public function eraseCredentials() {}
+
+    public function getSalt() {}
+
+    public function getRoles() 
+    {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * @return Collection|Favoris[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->setUsername($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+            // set the owning side to null (unless already changed)
+            if ($favori->getUsername() === $this) {
+                $favori->setUsername(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getAdmin(): ?bool
     {
         return $this->admin;
     }
 
-    public function setAdmin(?bool $admin): self
+    public function setAdmin(bool $admin): self
     {
         $this->admin = $admin;
 

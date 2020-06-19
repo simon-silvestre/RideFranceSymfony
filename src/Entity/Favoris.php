@@ -18,40 +18,42 @@ class Favoris
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity=SkateParks::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $post_id;
+    private $skatepark;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="favoris")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $username;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPostId(): ?int
+    public function getSkatepark(): ?SkateParks
     {
-        return $this->post_id;
+        return $this->skatepark;
     }
 
-    public function setPostId(int $post_id): self
+    public function setSkatepark(SkateParks $skatepark): self
     {
-        $this->post_id = $post_id;
+        $this->skatepark = $skatepark;
 
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUsername(): ?Users
     {
-        return $this->user_id;
+        return $this->username;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUsername(?Users $username): self
     {
-        $this->user_id = $user_id;
+        $this->username = $username;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SkateParksRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,7 +52,17 @@ class SkateParks
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $user;
+    private $validate;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="skatepark", orphanRemoval=true)
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -129,14 +141,45 @@ class SkateParks
         return $this;
     }
 
-    public function getUser(): ?bool
+    public function getValidate(): ?bool
     {
-        return $this->user;
+        return $this->validate;
     }
 
-    public function setUser(?bool $user): self
+    public function setValidate(?bool $validate): self
     {
-        $this->user = $user;
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setSkatepark($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getSkatepark() === $this) {
+                $comment->setSkatepark(null);
+            }
+        }
 
         return $this;
     }

@@ -27,11 +27,11 @@
                     </div>
                     <div class="form_group">
                         <span class="input-icon"><i class="fas fa-user-circle"></i></span>
-                        {{ form_row(inscription_form.pseudo, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}
+                        {{ form_row(inscription_form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}
                     </div>
                     <div class="form_group">
                         <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        {{ form_row(inscription_form.mdp, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
+                        {{ form_row(inscription_form.password, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
                     </div>
                     <button type="submit" class="btn signin" name="register">S'inscrire</button>
         {{ form_end(inscription_form) }}
@@ -39,16 +39,16 @@
 
 
              <div class="col-lg-4 col-md-5 col-sm-8 col-11">
-                <form class="form_horizontal" action="index.php?action=connexion" method="post">
+                <form class="form_horizontal" action="{{ path('security_Login') }}" method="post">
                     <div class="form_icon"><i class="fa fa-user-circle"></i></div>
                     <h3 class="title">Se connecter</h3>
                     <div class="form_group">
                         <span class="input-icon"><i class="fas fa-user-circle"></i></span>
-                        <input class="form-control" type="text" name="pseudo" placeholder="Pseudo">
+                        <input class="form-control" type="text" required name="_username" placeholder="Pseudo">
                     </div>
                     <div class="form_group">
                         <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        <input class="form-control" type="password" name="mdp" placeholder="Mot de passe">
+                        <input class="form-control" type="password" required name="_password" placeholder="Mot de passe">
                     </div>
                     <button type="submit" class="btn signin" name="connexion">Connexion</button>
                 </form>

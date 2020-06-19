@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <table class="table mt-5 border">
+    <thead id="adminTab">
+        <tr class="center_form">
+        <th scope="col">Pseudo</th>
+        <th class="text-center" scope="col">Admin</th>
+        <th class="text-center" scope="col">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody id="adminTabRow">
+        {% for user in Users %}
+         <tr class="center_form">
+            <td>{{ user.username }}</td>
+            <td class="text-sm-center">
+                {% if user.admin is same as(true) %}
+                    {{ "oui" }}
+                {% else %}
+                    {{ "non" }}
+                {% endif %}
+            </td>
+            <td class="text-center icon_container">
+                <a class="btn btn-success icon_btn" href="index.php?action=changeUser&amp;id=<?= $User['id'] ?>"><i class="fas fa-user"></i></a>
+                <a class="btn btn-info icon_btn" href="index.php?action=changeAdmin&amp;id=<?= $User['id'] ?>"><i class="fas fa-user-shield"></i></a>
+                <a class="btn btn-danger" href="index.php?action=deleteUser&amp;id=<?= $User['id'] ?>"><i class="far fa-trash-alt"></i></a>
+            </td>
+        </tr>
+       {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

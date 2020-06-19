@@ -8,7 +8,13 @@
     {% block stylesheets %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
     <script src="https://kit.fontawesome.com/b9aff8c9cf.js" crossorigin="anonymous"></script>
     {% endblock %}
 </head>
@@ -27,7 +33,8 @@
                 <div class="collapse navbar-collapse mr-lg-5" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mr-lg-3">
                         <li class="nav-item active">
-                            <a class="nav-link mr-lg-3" href="/">ACCUEIL <span class="sr-only">(current)</span></a>
+                            <a class="nav-link mr-lg-3" href="{{ path('home') }}">ACCUEIL <span
+                                    class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mr-lg-3" href="{{ path('SkateParksMap') }}">SKATEPARKS</a>
@@ -35,42 +42,40 @@
                         <li class="nav-item">
                             <a class="nav-link mr-lg-3" href="index.php?action=Contact">CONTACT</a>
                         </li>
-                        <?php if (isset($_SESSION['id'])){
-            if ($_SESSION['admin'] == 1) {?>
+
+                        {% if app.user %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link mr-lg-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link mr-lg-3 dropdown-toggle" href="" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ADMINISTRATEUR
                             </a>
                             <div class="dropdown-menu bg-dark navBlack" aria-labelled="navbarDropdown">
-                                <a class="dropdown-item" href="index.php?action=Profil">PROFIL</a>
-                                <a class="dropdown-item" href="index.php?action=SkateManager">SKATEPARKS MANAGER</a>
-                                <a class="dropdown-item" href="index.php?action=CommentManager">COMMENTAIRES MANAGER</a>
-                                <a class="dropdown-item" href="index.php?action=AllUsers">UTILISATEURS MANAGER</a>
+                                <a class="dropdown-item" href="{{ path('security_profil', {'view': 'view'}) }}">PROFIL</a>
+                                <a class="dropdown-item" href="{{ path('ArticlesGestion') }}">SKATEPARKS MANAGER</a>
+                                <a class="dropdown-item" href="{{ path('CommentsGestion') }}">COMMENTAIRES MANAGER</a>
+                                <a class="dropdown-item" href="{{ path('UsersGestion') }}">UTILISATEURS MANAGER</a>
                             </div>
                         </li>
-                        <?php } else if(($_SESSION['admin'] !== 1)) {?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link mr-lg-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link mr-lg-3 dropdown-toggle" href="" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 PROFIL
                             </a>
                             <div class="dropdown-menu bg-dark navBlack" aria-labelled="navbarDropdown">
-                                <a class="dropdown-item" href="index.php?action=Profil">PROFIL</a>
-                                <a class="dropdown-item" href="index.php?action=FavorisPage">FAVORIS</a>
+                                <a class="dropdown-item" href="{{ path('security_profil', {'view': 'view'}) }}">PROFIL</a>
+                                <a class="dropdown-item" href="">FAVORIS</a>
                             </div>
                         </li>
-                        <?php }?>
-                        <?php }?>
+                        {% endif %}
                     </ul>
                     <form class="form-inline navbar">
-                        <?php if (isset($_SESSION['id'])){ ?>
-                        <a href="index.php?action=Logout" class="btn btn-outline-light connected_button">SE
-                            DECONNECTER</a>
-                        <?php } else{?>
+                        {% if not app.user %}
                         <a href="{{ path('security_connexion') }}" class="btn btn-outline-light connected_button">SE
                             CONNECTER</a>
-                        <?php }?>
+                        {% else %}
+                        <a href="{{ path('security_logout') }}" class="btn btn-outline-light connected_button">SE
+                            DECONNECTER</a>
+                        {% endif %}
                     </form>
                 </div>
             </nav>
@@ -121,7 +126,8 @@
 
                     {% for skatepark in skateparks %}
                     <div class="card card-style mb-5" id="HomePageCard">
-                        <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="HomeSkateImg"><img src="Images/MiniatureSkateParks/{{ skatepark.image }}" alt="..."></a>
+                        <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="HomeSkateImg"><img
+                                src="Images/MiniatureSkateParks/{{ skatepark.image }}" alt="..."></a>
                         <div class="card-body">
                             <p class="card-text date-card"><strong>{{ skatepark.ville }}</strong> | 10/03/2020</p>
                             <p class="card-description col-12 col-lg-11">{{ skatepark.contenu | slice(0, 50) }}...</p>

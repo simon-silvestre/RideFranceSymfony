@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des commentaires{% endblock %}
+
+{% block body %}
+
+
+<div class="container" id="containerCommentaireManager">
+
+    {% for commentaire in commentaires %}
+    {% if commentaire.signaler is same as(true) %}
+    <div class="row mr-5 ml-5" id="SkateparkCommentaire">
+        <div class="d-flex flex-row card-body card mb-3">
+            <div class="ml-3 ml-lg-0">
+                <div id="UserCommentImage"
+                    style="background-image: url(Images/ProfilImg/"></div>
+            </div>
+            <div class="ml-2 col-lg-11">
+                <p class="ml-4 ml-lg-0"><strong>{{ commentaire.username }}</strong> le
+                    {{ commentaire.createdAt | date('d/M/Y') }}</p>
+                <p>
+                    <div class="ml-3 ml-lg-0 p-lg-0 mt-1 rateYo-{{ commentaire.note }}"></div>
+                </p>
+
+                <script>
+                    $(function () {
+                        $(".rateYo-{{ commentaire.note }}").rateYo({
+                            starWidth: "15px",
+                            readOnly: true,
+                            rating: {{ commentaire.note }}
+                        });
+                    });
+                </script>
+                <form class="form-inline">
+                    <p class="mt-2 ml-4 ml-lg-0">{{ commentaire.contenu }}</p>
+                    <div class="text-right icon_container iconCommentaireManager ml-auto">
+                        <a class="btn btn-primary signalercomment"
+                            href="index.php?action=approuverComment&amp;id=<?= $comments['id'] ?>"><i
+                                class="fas fa-check"></i></a>
+                        <a class="btn btn-danger mr-4 mr-lg-0 signalercomment"
+                            href="index.php?action=deleteCommentaire&amp;id=<?= $comments['id'] ?>"><i
+                                class="far fa-trash-alt"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row mr-5 ml-5" id="SkateparkCommentaire">
+        <div class="d-flex flex-row card-body card mb-3">
+            <div class="ml-3 ml-lg-0">
+                <div id="UserCommentImage"
+                    style="background-image: url(assets/ProfilImg/"></div>
+            </div>
+            <div class="ml-2 col-lg-11">
+                <p class="ml-4 ml-lg-0"><strong>{{ commentaire.username }}</strong> le
+                   {{ commentaire.createdAt | date('d/M/Y') }}</p>
+                <p>
+                    <div class="ml-3 ml-lg-0 p-lg-0 mt-1 rateYo-{{ commentaire.note }}"></div>
+                </p>
+
+                <script>
+                    $(function () {
+                        $(".rateYo-{{ commentaire.note }}").rateYo({
+                            starWidth: "15px",
+                            readOnly: true,
+                            rating: {{ commentaire.note }}
+                        });
+                    });
+                </script>
+                <form class="form-inline">
+                    <p class="mt-2 ml-4 ml-lg-0">{{ commentaire.contenu }}</p>
+                    <a class="btn btn-danger ml-auto mr-4 mr-lg-0 signalercomment"
+                        href="index.php?action=deleteCommentaire&amp;id=<?= $comments['id'] ?>"><i
+                            class="far fa-trash-alt"></i></a>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+   {% endfor %}
+
+</div>
+
+{% endblock %}
