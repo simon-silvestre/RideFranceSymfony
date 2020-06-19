@@ -64,32 +64,27 @@
             {% else %}
 
             <p class="text-center" id="profilTitle">Mes informations</p>
-            <form action="index.php?action=saveProfil" method="post" enctype="multipart/form-data"
-                class=" mt-5 mx-auto profil_Form" id="profilInfosContainer">
-                <input type="hidden" name="id" value="<?=  $_SESSION['id']; ?>">
+            <div class=" mt-5 mx-auto profil_Form" id="profilInfosContainer">
+              {{ form_start(profil_Form) }}
                 <div class="form-group d-flex justify-content-between mb-4">
-                    <input type="text" class="form-control col-5" name="nom" placeholder="Nom"
-                        value="{{ users.nom }}">
-                    <input type="comment" class="form-control col-5" name="prenom" placeholder="Prénom"
-                        value="{{ users.prenom }}">
+                    {{ form_row(profil_Form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}
+                    {{ form_row(profil_Form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group mb-4">
-                    <input type="email" class="form-control" name="email" placeholder="E-mail"
-                        value="{{ users.email }}">
+                   {{ form_row(profil_Form.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group d-flex justify-content-between">
-                    <input type="text" class="form-control col-5" name="pseudo" placeholder="Pseudo"
-                        value="{{ users.username }}">
-                    <input type="password" class="form-control col-5" name="mdp" placeholder="********">
+                      {{ form_row(profil_Form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}
+                      {{ form_row(profil_Form.password, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group">
-                    <input type="file" class="form-control mr-auto" name="image" id="profilInputImage">
+                      {{ form_row(profil_Form.imageprofil, {'attr': {'class': 'form-control profilInputImage'}}) }}
                 </div>
                 <div class="form-group text-center">
-                   <a href="{{ path('security_profil', {'view': 'view'}) }}" class="btn btn-primary col-12" name="edit"
+                   <a href="{{ path('security_profil', {'view': 'view'}) }}" class="btn btn-primary col-12"
                         id="ProfilFormBtn">Enregistrer</a>
                 </div>
-            </form>
+            </div>
             {% endif %}
         </div>
         <div class="col-lg-7 col-12 mt-5 mx-auto">

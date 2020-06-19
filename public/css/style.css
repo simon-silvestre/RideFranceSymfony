@@ -419,7 +419,7 @@ section#homeIcon
     align-items: center;
 }
 
-.form_bg label
+label
 {
     display: none;
 }
@@ -545,7 +545,7 @@ section#homeIcon
     transition-duration: 500ms;
 }
 
-#profilInputImage
+.profilInputImage
 {
     background-color: transparent!important;
     border: none!important;

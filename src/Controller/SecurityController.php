@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Users;
 use App\Entity\Comments;
+use App\Form\ProfilType;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
@@ -60,27 +61,43 @@ class SecurityController extends AbstractController
     public function logout() {}
 
     /**
-     * @Route("/profil{view}", name="security_profil")
+     * @Route("/profil/{view}", name="security_profil")
      */
     public function showProfil($view)
     {
-        $update = false;
         $users = $this->getUser();
+
         $repo = $this->getDoctrine()->getRepository(Users::class);
         $User = $repo->find($users);
 
         if($view == 'view')
         {
             $update = false;
+
+            return $this->render('security/profil.html.twig', [
+                'update' => $update,
+                'users' => $User,
+            ]);
         }
         elseif($view == 'edit')
         {
             $update = true;
-        }
 
-        return $this->render('security/profil.html.twig', [
-            'update' => $update,
-            'users' => $User
-        ]);
+            $users = new Users();
+            $users->setNom($User->getNom())
+                  ->setPrenom($User->getPrenom())
+                  ->setEmail($User->getEmail())
+                  ->setUsername($User->getUsername())
+                  ->setImageprofil($User->getImageprofil());
+
+            $form = $this->createForm(ProfilType::class, $users);
+
+            return $this->render('security/profil.html.twig', [
+                'update' => $update,
+                'users' => $User,
+                'profil_Form' => $form->createView()
+            ]);
+        }
     }
+
 }
