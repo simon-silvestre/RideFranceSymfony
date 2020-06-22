@@ -136,16 +136,15 @@ class SkateParks
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
         if($this->imageFile instanceof UploadedFile)
         {
             $this->updatedAt = new \DateTime('now');
         }
-    }
-
-    public function setImageFile(File $imageFile): self
-    {
-        $this->imageFile = $imageFile;
-
         return $this;
     }
 
