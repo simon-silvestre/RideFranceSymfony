@@ -419,7 +419,7 @@ section#homeIcon
     align-items: center;
 }
 
-label
+.form_bg label
 {
     display: none;
 }

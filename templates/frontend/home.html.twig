@@ -87,7 +87,7 @@
                         skatepark</a>
                 </div>
                 <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mt-lg-5" id="image-container">
-                    <img src="Images/quarter.png" alt="rampe" class="col-12 mt-xl-3 mt-5" id="img-right">
+                    <img src="../Images/quarter.png" alt="rampe" class="col-12 mt-xl-3 mt-5" id="img-right">
                 </div>
             </div>
         </div>
@@ -97,17 +97,17 @@
         <div class="container-fluid">
             <div class="row justify-content-around mt-5">
                 <div class="home_icon col-xl-4 col-md-4 col-7 text-center mt-5">
-                    <img class="mx-auto col-xl-5 col-lg-8 col-md-8 col-sm-7 col-9" src="Images/map.png"
+                    <img class="mx-auto col-xl-5 col-lg-8 col-md-8 col-sm-7 col-9" src="../Images/map.png"
                         alt="carte de france" id="home_icon_img">
                     <p class="home_icon_text text-center mt-3">chosir le lieux</p>
                 </div>
                 <div class="home_icon col-xl-4 col-md-4 col-7 text-center mt-5">
-                    <img class="mx-auto col-xl-5 col-lg-8 col-md-8 col-sm-7 col-9" src="Images/skate.png" alt="skateur"
+                    <img class="mx-auto col-xl-5 col-lg-8 col-md-8 col-sm-7 col-9" src="../Images/skate.png" alt="skateur"
                         id="home_icon_img">
                     <p class="home_icon_text text-center mt-3">Aller rider</p>
                 </div>
                 <div class="home_icon col-xl-4 col-md-4 col-7 text-center mt-5">
-                    <img class="mx-auto col-xl-5 col-lg-8 col-md-8 col-sm-7 col-9" src="Images/review.png" alt="notes"
+                    <img class="mx-auto col-xl-5 col-lg-8 col-md-8 col-sm-7 col-9" src="../Images/review.png" alt="notes"
                         id="home_icon_img">
                     <p class="home_icon_text text-center mt-3">noter le park</p>
                 </div>
@@ -127,7 +127,7 @@
                     {% for skatepark in skateparks %}
                     <div class="card card-style mb-5" id="HomePageCard">
                         <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="HomeSkateImg"><img
-                                src="Images/MiniatureSkateParks/{{ skatepark.image }}" alt="..."></a>
+                                src="{{ vich_uploader_asset(skatepark, 'imageFile') }}" alt="..."></a>
                         <div class="card-body">
                             <p class="card-text date-card"><strong>{{ skatepark.ville }}</strong> | 10/03/2020</p>
                             <p class="card-description col-12 col-lg-11">{{ skatepark.contenu | slice(0, 50) }}...</p>

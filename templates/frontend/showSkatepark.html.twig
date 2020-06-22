@@ -19,7 +19,7 @@
     <div class="row justify-content-between">
         <div class="col-md-5 col-10 mt-5 ml-md-5 mx-auto" id="SkateParkDescriptionLeft">
             <h2 class="text-center mb-4 ">Description</h2>
-            <img src="../Images/MiniatureSkateParks/{{ skatepark.image }}" alt="..." class="col-12 p-0 m-0">
+            <img src="{{ vich_uploader_asset(skatepark, 'imageFile') }}" alt="..." class="col-12 p-0 m-0">
             <p class="mt-5">{{ skatepark.contenu }}</p>
         </div>
         <div class="col-md-4 mt-5 mr-5 ml-5 ml-md-0" id="SkateParkDescriptionRight">
@@ -55,8 +55,7 @@
             </div>
             {{ form_start(commentaireForm) }}
             <div class="form-group ml-3 ml-lg-0 mr-3 mr-lg-0">
-                {{ form_row(commentaireForm.contenu, {'attr': {'placeholder': 'Votre commentaire', 'class': 'form-control comment_input inputCommentForm'}})
-                }}
+                {{ form_row(commentaireForm.contenu, {'attr': {'placeholder': 'Votre commentaire', 'class': 'form-control comment_input inputCommentForm'}}) }}
             </div>
             <button type="submit" class="btn btn-dark ml-3 ml-lg-0">Envoyer</button>
             {{  form_end(commentaireForm) }}

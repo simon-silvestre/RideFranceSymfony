@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\SkateParksRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SkateParksRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=SkateParksRepository::class)
+ * @Vich\Uploadable()
  */
 class SkateParks
 {
@@ -35,9 +39,16 @@ class SkateParks
     private $contenu;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private $filename;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="miniature", fileNameProperty="filename")
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -105,14 +116,29 @@ class SkateParks
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getFilename(): ?string
     {
-        return $this->image;
+        return $this->filename;
     }
 
-    public function setImage(string $image): self
+    public function setFilename(string $filename): self
     {
-        $this->image = $image;
+        $this->filename = $filename;
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+        if($this->imageFile instanceof UploadedFile)
+        {
+            $this->creation_date = new \DateTime('now');
+        }
+    }
+
+    public function setImageFile(File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }
@@ -183,4 +209,6 @@ class SkateParks
 
         return $this;
     }
+
+
 }

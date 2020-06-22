@@ -22,13 +22,13 @@
                 <td class="text-sm-center">{{skatepark.region}}</td>
                 <td class="text-center icon_container">
                     <a class="btn btn-warning icon_btn"
-                        href="index.php?action=viewSkatepark&amp;id={{skatepark.id}}"><i
+                        href="{{ path('show_skatepark', {'id': skatepark.id}) }}"><i
                             class="far fa-eye"></i></a>
                     <a class="btn btn-info icon_btn"
-                        href="index.php?action=editSkatepark&amp;id={{skatepark.id}}"><i
+                        href="{{ path('Skatepark_edit', {'id': skatepark.id}) }}"><i
                             class="far fa-edit"></i></a>
                     <a class="btn btn-danger"
-                        href="index.php?action=deleteSkatepark&amp;id={{skatepark.id}}"><i
+                        href="{{ path('Skatepark_delete', {'id': 'skatepark.id'}) }}"><i
                             class="far fa-trash-alt"></i></a>
 
                 </td>
@@ -43,13 +43,13 @@
                         href="{{ path('CommentsGestion', skatepark.id) }}"><i
                             class="far fa-thumbs-up"></i></i></a>
                     <a class="btn btn-warning icon_btn"
-                        href="index.php?action=viewSkatepark&amp;id={{skatepark.id}}"><i
+                        href="{{ path('show_skatepark', {'id': skatepark.id}) }}"><i
                             class="far fa-eye"></i></a>
                     <a class="btn btn-info icon_btn"
-                        href="index.php?action=editSkatepark&amp;id={{skatepark.id}}"><i
+                        href=""><i
                             class="far fa-edit"></i></a>
                     <a class="btn btn-danger"
-                        href="index.php?action=deleteSkatepark&amp;id={{skatepark.id}}"><i
+                        href="{{ path('Skatepark_delete', {'id': skatepark.id}) }}"><i
                             class="far fa-trash-alt"></i></a>
                 </td>
             </tr>
@@ -58,7 +58,7 @@
         </tbody>
     </table>
 
-    <a class="btn mb-5" href="index.php?action=addSkatepark" id="addSkateParkBtn">Ajouter un SkatePark</i></a>
+    <a class="btn mb-5" href="{{ path('Skatepark_add') }}" id="addSkateParkBtn">Ajouter un SkatePark</i></a>
 </div>
 
 {% endblock %}
