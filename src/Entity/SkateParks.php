@@ -58,12 +58,7 @@ class SkateParks
     /**
      * @ORM\Column(type="datetime")
      */
-    private $creation_date;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $validate;
+    private $createdAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="skatepark", orphanRemoval=true)
@@ -71,14 +66,14 @@ class SkateParks
     private $comments;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="boolean")
      */
-    private $uptatedAt;
+    private $validate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private $updateAt;
 
     public function __construct()
     {
@@ -134,6 +129,7 @@ class SkateParks
     public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
+
         return $this;
     }
 
@@ -142,7 +138,7 @@ class SkateParks
         return $this->imageFile;
         if($this->imageFile instanceof UploadedFile)
         {
-            $this->creation_date = new \DateTime('now');
+            $this->updatedAt = new \DateTime('now');
         }
     }
 
@@ -165,14 +161,14 @@ class SkateParks
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->creation_date;
+        return $this->createdAt;
     }
 
-    public function setCreationDate(\DateTimeInterface $creation_date): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->creation_date = $creation_date;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -182,7 +178,7 @@ class SkateParks
         return $this->validate;
     }
 
-    public function setValidate(?bool $validate): self
+    public function setValidate(bool $validate): self
     {
         $this->validate = $validate;
 
@@ -220,16 +216,15 @@ class SkateParks
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdateAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updateAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updateAt = $updateAt;
 
         return $this;
     }
-
 }

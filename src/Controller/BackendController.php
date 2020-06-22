@@ -73,7 +73,7 @@ class BackendController extends AbstractController
          {
             if(!$skatepark->getId())
             {
-                $skatepark->setCreationDate(new \DateTime());
+                $skatepark->setCreatedAt(new \DateTime());
                 $skatepark->setValidate('0');
             }
 

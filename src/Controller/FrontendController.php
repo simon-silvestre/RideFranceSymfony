@@ -19,7 +19,7 @@ class FrontendController extends AbstractController
     public function showhome()
     {
         $repo = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skateparks = $repo->findBy(array(), array('creation_date' => 'desc'), 3, 0);
+        $skateparks = $repo->findBy(array(), array('createdAt' => 'desc'), 3, 0);
 
         return $this->render('frontend/home.html.twig', [
             'skateparks' => $skateparks
@@ -40,7 +40,7 @@ class FrontendController extends AbstractController
     public function showSkateParksRegion($region)
     {
         $repo = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skatepark = $repo->findBy(array('region' => $region), array('creation_date' => 'desc'));
+        $skatepark = $repo->findBy(array('region' => $region), array('createdAt' => 'desc'));
 
         return $this->render('frontend/skateParksRegion.html.twig', [
             'skatepark' => $skatepark
