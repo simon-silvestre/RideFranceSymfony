@@ -74,8 +74,8 @@ class BackendController extends AbstractController
             if(!$skatepark->getId())
             {
                 $skatepark->setCreationDate(new \DateTime());
+                $skatepark->setValidate('0');
             }
-            $skatepark->setValidate('0');
 
             /* On envoi les données dans la bdd */
             $manager->persist($skatepark);
@@ -83,7 +83,7 @@ class BackendController extends AbstractController
  
              return $this->redirectToRoute('ArticlesGestion');
          }
-         return $this->render('backend/addSkatepark.html.twig', [
+         return $this->render('backend/addEditSkatepark.html.twig', [
             /* on passe le formulaire pour la page  */
             'skatepark_form' => $skatepark_form->createView()
         ]);

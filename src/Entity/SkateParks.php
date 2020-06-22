@@ -70,6 +70,16 @@ class SkateParks
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $uptatedAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -121,7 +131,7 @@ class SkateParks
         return $this->filename;
     }
 
-    public function setFilename(string $filename): self
+    public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
         return $this;
@@ -210,5 +220,16 @@ class SkateParks
         return $this;
     }
 
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 
 }
