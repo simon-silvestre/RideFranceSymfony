@@ -419,7 +419,7 @@ section#homeIcon
     align-items: center;
 }
 
-.form_bg label
+#profilInfosContainer label
 {
     display: none;
 }
@@ -618,14 +618,18 @@ thead#adminTab
 }
 
 .icon_container 
-    {
-        width: 40%!important;
-    }
+{
+    width: 40%!important;
+}
+    .SkateparkValide
+{
+    font-size: 0.7rem!important;
+}
 
 
 /************************** AddEditForm Page **************************/
 
-#AddEditForm
+.AddEditForm
 {
     margin-top: 12vh;
 }
@@ -753,7 +757,8 @@ thead#adminTab
 
     .card-body
     {
-        padding-left: 0!important;
+        padding-left: 1rem!important;
+        padding-right: 1rem!important;
     }
 
 }
@@ -807,6 +812,10 @@ thead#adminTab
     {
         font-size: 0.8rem!important;
         margin-left: 1.5rem!important;
+    }
+
+    .AddEditForm {
+        margin-top: 5vh;
     }
 }
 

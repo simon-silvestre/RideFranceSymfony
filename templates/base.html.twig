@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -41,7 +42,7 @@
                     <a class="nav-link mr-lg-3" href="{{ path('SkateParksMap') }}">SKATEPARKS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-lg-3" href="index.php?action=Contact">CONTACT</a>
+                    <a class="nav-link mr-lg-3" href="{{ path('Contact') }}">CONTACT</a>
                 </li>
 
                 {% if app.user %}

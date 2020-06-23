@@ -40,13 +40,13 @@
                 <td class="text-sm-center">{{skatepark.region}}</td>
                 <td class="text-center icon_container">
                     <a class="btn btn-success icon_btn"
-                        href="{{ path('CommentsGestion', skatepark.id) }}"><i
+                        href="{{ path('Skatepark_validation', {'id': skatepark.id}) }}"><i
                             class="far fa-thumbs-up"></i></i></a>
                     <a class="btn btn-warning icon_btn"
                         href="{{ path('show_skatepark', {'id': skatepark.id}) }}"><i
                             class="far fa-eye"></i></a>
                     <a class="btn btn-info icon_btn"
-                        href=""><i
+                        href="{{ path('Skatepark_edit', {'id': skatepark.id}) }}"><i
                             class="far fa-edit"></i></a>
                     <a class="btn btn-danger"
                         href="{{ path('Skatepark_delete', {'id': skatepark.id}) }}"><i

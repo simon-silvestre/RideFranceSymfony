@@ -71,7 +71,7 @@
                 <form class="form-inline">
                     <p class="mt-2 ml-4 ml-lg-0">{{ commentaire.contenu }}</p>
                     <a class="btn btn-danger ml-auto mr-4 mr-lg-0 signalercomment"
-                        href="index.php?action=deleteCommentaire&amp;id=<?= $comments['id'] ?>"><i
+                        href="{{ path('Commentaire_delete', {'id': commentaire.id}) }}"><i
                             class="far fa-trash-alt"></i></a>
                 </form>
             </div>

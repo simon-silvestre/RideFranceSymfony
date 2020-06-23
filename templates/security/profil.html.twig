@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
     <div class="row" id="profilBanner">
-        <img src="../Images/profilBanner.jpg" alt="skatepark">
+        <img src="../../Images/profilBanner.jpg" alt="skatepark">
     </div>
     <div class="row">
         <div class="col-12 bg-dark d-flex align-items-center" id="ProfiBar">
@@ -64,18 +64,18 @@
             {% else %}
 
             <p class="text-center" id="profilTitle">Mes informations</p>
-            <div class=" mt-5 mx-auto profil_Form" id="profilInfosContainer">
-              {{ form_start(profil_Form) }}
+            <div class=" mt-5 mx-auto" id="profilInfosContainer">
+                {{ form_start(profil_Form) }}
                 <div class="form-group d-flex justify-content-between mb-4">
-                    {{ form_row(profil_Form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}
-                    {{ form_row(profil_Form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}
+                    <div class="col-5 p-0">{{ form_row(profil_Form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}</div>
+                    <div class="col-5 p-0">{{ form_row(profil_Form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}</div>
                 </div>
                 <div class="form-group mb-4">
                    {{ form_row(profil_Form.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group d-flex justify-content-between">
-                      {{ form_row(profil_Form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}
-                      {{ form_row(profil_Form.password, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
+                    <div class="col-5 p-0">{{ form_row(profil_Form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}</div>
+                    <div class="col-5 p-0">{{ form_row(profil_Form.password, {'attr': {'placeholder': '********', 'class': 'form-control'}}) }}</div>
                 </div>
                 <div class="form-group">
                       {{ form_row(profil_Form.imageprofil, {'attr': {'class': 'form-control profilInputImage'}}) }}
@@ -85,6 +85,7 @@
                         id="ProfilFormBtn">Enregistrer</a>
                 </div>
             </div>
+            {{ form_end(profil_Form) }}
             {% endif %}
         </div>
         <div class="col-lg-7 col-12 mt-5 mx-auto">

@@ -6,9 +6,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-11 mx-auto card-body mb-5">
+        <div class="col-11 mx-auto card-body mb-5 AddEditForm">
              {{ form_start(skatepark_form) }}
-                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                 <div class="form-group">
                   {{ form_row(skatepark_form.region, {'attr': {'class': 'form-control'}}) }}
                 </div>
@@ -26,10 +25,10 @@
                     </div>
 
                     <div class="col-6 pr-0">
-                        {{ form_row(skatepark_form.imageFile, {'attr': {'placeholder': 'Adresse', 'class': 'form-control profilInputImage'}}) }}
+                        {{ form_row(skatepark_form.imageFile, {'label': 'Image', 'attr': {'placeholder': 'Adresse', 'class': 'form-control profilInputImage'}}) }}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success">Ajouter l'article</button>
+                <button type="submit" class="btn btn-success">Envoyer le skatepark</button>
             {{ form_end(skatepark_form) }}
         </div>
     </div>

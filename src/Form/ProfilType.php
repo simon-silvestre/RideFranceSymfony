@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class ProfilType extends AbstractType
 {
@@ -17,9 +18,8 @@ class ProfilType extends AbstractType
             ->add('prenom')
             ->add('email')
             ->add('username')
-            ->add('password')
-            ->add('imageprofil', FileType::class)
-        ;
+            ->add('password',PasswordType::class, ['required'=>false])
+            ->add('imageprofil', FileType::class, ['required'=>false]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

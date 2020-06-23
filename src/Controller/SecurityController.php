@@ -63,7 +63,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/profil/{view}", name="security_profil")
      */
-    public function showProfil($view)
+    public function showProfil($view, Request $request, EntityManagerInterface $manager)
     {
         $users = $this->getUser();
 
@@ -83,19 +83,21 @@ class SecurityController extends AbstractController
         {
             $update = true;
 
-            $users = new Users();
-            $users->setNom($User->getNom())
-                  ->setPrenom($User->getPrenom())
-                  ->setEmail($User->getEmail())
-                  ->setUsername($User->getUsername())
-                  ->setImageprofil($User->getImageprofil());
+            $profil_form = $this->createForm(ProfilType::class, $User);
 
-            $form = $this->createForm(ProfilType::class, $users);
+            $profil_form->handleRequest($request);
 
+            if($profil_form->isSubmitted() && $profil_form->isValid())
+            {
+                $manager->persist($User);
+                $manager->flush();
+
+                return $this->redirectToRoute('/profil/view');
+            }
             return $this->render('security/profil.html.twig', [
                 'update' => $update,
                 'users' => $User,
-                'profil_Form' => $form->createView()
+                'profil_Form' => $profil_form->createView()
             ]);
         }
     }

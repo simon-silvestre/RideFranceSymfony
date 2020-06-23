@@ -41,6 +41,18 @@ class BackendController extends AbstractController
     }
 
     /**
+     * @Route("/Commentaires/{id}/delete", name="Commentaire_delete")
+     */
+    public function DeleteCommentaire(Comments $comment)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($comment);
+        $manager->flush();
+
+        return $this->redirectToRoute('CommentsGestion');
+    }
+
+    /**
      * @Route("/Articles", name="ArticlesGestion")
      */
     public function showArticlesGestion()
@@ -97,6 +109,18 @@ class BackendController extends AbstractController
     {
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($skatepark);
+        $manager->flush();
+
+        return $this->redirectToRoute('ArticlesGestion');
+    }
+
+    /**
+     * @Route("/Skatepark/{id}/Valider", name="Skatepark_validation")
+     */
+    public function ValidationSkatepark(SkateParks $skatepark, EntityManagerInterface $manager)
+    {
+        $skatepark->setValidate('0');
+        $manager->persist($skatepark);
         $manager->flush();
 
         return $this->redirectToRoute('ArticlesGestion');
