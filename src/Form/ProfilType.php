@@ -19,7 +19,7 @@ class ProfilType extends AbstractType
             ->add('email')
             ->add('username')
             ->add('password',PasswordType::class, ['required'=>false])
-            ->add('imageprofil', FileType::class, ['required'=>false]);
+            ->add('imageFile', FileType::class, ['required'=>false]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

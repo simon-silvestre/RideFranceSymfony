@@ -84,7 +84,7 @@ nav#navbar_bleu
     font-family: 'HelveticaNeue-CondensedBlack';
     font-size: 50px!important;
     color: #FFFFFF;
-    letter-spacing: 2.75px;
+    letter-spacing: 2.5px;
 }
 
 .find_button
@@ -419,7 +419,7 @@ section#homeIcon
     align-items: center;
 }
 
-#profilInfosContainer label
+#profilInfosContainer label, .form_bg label
 {
     display: none;
 }

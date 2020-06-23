@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
      */
     public function Login() 
     {
-        return $this->redirectToRoute('security_profil');
+        return $this->redirectToRoute('security_profil', array('view' => 'view'));
     }
 
     /**

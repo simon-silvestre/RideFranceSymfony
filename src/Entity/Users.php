@@ -9,9 +9,13 @@ use App\Repository\UsersRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
+ * @Vich\Uploadable()
  * @UniqueEntity(
  *  fields= {"email"},
  *  message= "L'email ou le pseudo que vous avez indiquez est deja utilisé !"
@@ -53,9 +57,16 @@ class Users implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
      */
-    private $imageprofil;
+    private $filename;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="miniature", fileNameProperty="filename")
+     */
+    private $imageFile;
 
     /**
      * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="username", orphanRemoval=true)
@@ -71,6 +82,11 @@ class Users implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $admin;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -143,15 +159,30 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getImageprofil(): ?string
+    public function getFilename(): ?string
     {
-        return $this->imageprofil;
+        return $this->filename;
     }
 
-    public function setImageprofil(?string $imageprofil): self
+    public function setFilename(?string $filename): self
     {
-        $this->imageprofil = $imageprofil;
+        $this->filename = $filename;
 
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+        if($this->imageFile instanceof UploadedFile)
+        {
+            $this->updatedAt = new \DateTime('now');
+        }
         return $this;
     }
 
@@ -234,6 +265,18 @@ class Users implements UserInterface
     public function setAdmin(bool $admin): self
     {
         $this->admin = $admin;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
