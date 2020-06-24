@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class BackendController extends AbstractController
 {
     /**
-     * @Route("/Utilisateurs", name="UsersGestion")
+     * @Route("/admin/Utilisateurs", name="UsersGestion")
      */
     public function showUserGestion()
     {
@@ -28,7 +28,7 @@ class BackendController extends AbstractController
     }
 
     /**
-     * @Route("/Commentaires", name="CommentsGestion")
+     * @Route("/admin/Commentaires", name="CommentsGestion")
      */
     public function showCommentsGestion()
     {
@@ -41,7 +41,7 @@ class BackendController extends AbstractController
     }
 
     /**
-     * @Route("/Commentaires/{id}/delete", name="Commentaire_delete")
+     * @Route("/admin/Commentaires/{id}/delete", name="Commentaire_delete")
      */
     public function DeleteCommentaire(Comments $comment)
     {
@@ -53,7 +53,7 @@ class BackendController extends AbstractController
     }
 
     /**
-     * @Route("/Articles", name="ArticlesGestion")
+     * @Route("/admin/Articles", name="ArticlesGestion")
      */
     public function showArticlesGestion()
     {
@@ -66,8 +66,8 @@ class BackendController extends AbstractController
     }
 
     /**
-     * @Route("/Articles/Ajouter", name="Skatepark_add")
-     * @Route("/Articles/{id}/Editer", name="Skatepark_edit")
+     * @Route("/admin/Articles/Ajouter", name="Skatepark_add")
+     * @Route("/admin/Articles/{id}/Editer", name="Skatepark_edit")
      */
     public function AddEditSkatepark(Skateparks $skatepark = null, Request $request, EntityManagerInterface $manager)
     {
@@ -103,7 +103,7 @@ class BackendController extends AbstractController
     }
 
     /**
-     * @Route("/Skatepark/{id}/delete", name="Skatepark_delete")
+     * @Route("/admin/Skatepark/{id}/delete", name="Skatepark_delete")
      */
     public function DeleteSkatepark(SkateParks $skatepark)
     {
@@ -115,7 +115,7 @@ class BackendController extends AbstractController
     }
 
     /**
-     * @Route("/Skatepark/{id}/Valider", name="Skatepark_validation")
+     * @Route("/admin/Skatepark/{id}/Valider", name="Skatepark_validation")
      */
     public function ValidationSkatepark(SkateParks $skatepark, EntityManagerInterface $manager)
     {

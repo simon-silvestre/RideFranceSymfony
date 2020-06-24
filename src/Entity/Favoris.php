@@ -18,7 +18,7 @@ class Favoris
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=SkateParks::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=SkateParks::class, inversedBy="favoris")
      * @ORM\JoinColumn(nullable=false)
      */
     private $skatepark;

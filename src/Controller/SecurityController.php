@@ -31,8 +31,7 @@ class SecurityController extends AbstractController
         {
             /* On crypt le mot de passe */
             $hash = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($hash)
-                 ->setAdmin(0);
+            $user->setPassword($hash);
 
             /* On envoi les données dans la bdd */
             $manager->persist($user);

@@ -45,7 +45,7 @@
                     <a class="nav-link mr-lg-3" href="{{ path('Contact') }}">CONTACT</a>
                 </li>
 
-                {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item dropdown">
                     <a class="nav-link mr-lg-3 dropdown-toggle" href="" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,6 +58,9 @@
                         <a class="dropdown-item" href="{{ path('UsersGestion') }}">UTILISATEURS MANAGER</a>
                     </div>
                 </li>
+                {% endif %}
+                {% if app.user %}
+                {% if not is_granted('ROLE_ADMIN') %}
                 <li class="nav-item dropdown">
                     <a class="nav-link mr-lg-3 dropdown-toggle" href="" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,6 +71,7 @@
                         <a class="dropdown-item" href="">FAVORIS</a>
                     </div>
                 </li>
+                {% endif %}
                 {% endif %}
             </ul>
             <form class="form-inline navbar">

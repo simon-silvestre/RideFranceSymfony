@@ -5,13 +5,17 @@
 {% block body %}
 
 <div class="container-fluid">
+    {% if app.user %}
     <div class="row">
         <div class="ml-auto mt-4 mr-md-5 mr-3" id="favorisIcon">
             <a href=""><i class="fas fa-heart" id="coeurPlein"></i></a>
-            <a href=""><i class="far fa-heart" id="coeurVide"></i></a>
+            <a href="{{ path('Skatepark_favoris', {'id': skatepark.id}) }}"><i class="far fa-heart" id="coeurVide"></i></a>
         </div>
     </div>
     <div class="row">
+    {% else %}
+    <div class="row mt-5">
+    {% endif %}
         <div class="col-md-5 col-8 ml-md-5 mx-auto text-center text-md-left" id="SkateParkTitle">
             <h1>Skatepark de <span id="SkateparkName">{{ skatepark.ville }}</span></h1>
         </div>

@@ -58,7 +58,7 @@ class Users implements UserInterface
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
 
@@ -79,12 +79,12 @@ class Users implements UserInterface
     private $comments;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="json")
      */
-    private $admin;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -190,9 +190,20 @@ class Users implements UserInterface
 
     public function getSalt() {}
 
-    public function getRoles() 
+    public function getRoles(): array 
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     /**
@@ -253,18 +264,6 @@ class Users implements UserInterface
                 $comment->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getAdmin(): ?bool
-    {
-        return $this->admin;
-    }
-
-    public function setAdmin(bool $admin): self
-    {
-        $this->admin = $admin;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Entity\Favoris;
 use App\Entity\Comments;
 use App\Entity\SkateParks;
 use App\Form\SkateparkType;
@@ -19,8 +20,21 @@ class FrontendController extends AbstractController
      */
     public function showhome()
     {
-        $repo = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skateparks = $repo->findBy(array(), array('createdAt' => 'desc'), 3, 0);
+        $users = $this->getUser();
+
+        $reposkatepark = $this->getDoctrine()->getRepository(SkateParks::class);
+        $skateparks = $reposkatepark->findBy(array(), array('createdAt' => 'desc'), 3, 0);
+
+        if($this->getUser())
+        {
+            $repouser = $this->getDoctrine()->getRepository(Users::class);
+            $user = $repouser->find($users);
+
+            return $this->render('frontend/home.html.twig', [
+                'skateparks' => $skateparks,
+                'user' => $user
+            ]);
+        }
 
         return $this->render('frontend/home.html.twig', [
             'skateparks' => $skateparks
@@ -105,6 +119,21 @@ class FrontendController extends AbstractController
             /* on passe le formulaire pour la page  */
             'contact_form' => $contact_form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/Skatepark/{id}/favoris", name="Skatepark_favoris")
+     */
+    public function FavorisSkatepark(SkateParks $skatepark, EntityManagerInterface $manager)
+    {
+        $favoris = new Favoris();
+        $favoris->setSkatepark($skatepark)
+                ->setUsername($this->getUser());
+    
+        $manager->persist($favoris);
+        $manager->flush($favoris);
+
+        return $this->redirectToRoute('show_skatepark', ['id' => $skatepark->getId()]);
     }
     
 }
