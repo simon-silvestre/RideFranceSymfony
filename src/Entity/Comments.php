@@ -49,10 +49,6 @@ class Comments
      */
     private $note;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Username;
 
     public function getId(): ?int
     {
@@ -127,18 +123,6 @@ class Comments
     public function setNote(int $note): self
     {
         $this->note = $note;
-
-        return $this;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->Username;
-    }
-
-    public function setUsername(string $Username): self
-    {
-        $this->Username = $Username;
 
         return $this;
     }

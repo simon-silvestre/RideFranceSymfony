@@ -19,7 +19,7 @@
          <tr class="center_form">
             <td>{{ user.username }}</td>
             <td class="text-sm-center">
-                {% if user.roles is_granted('ROLE_ADMIN') %}
+                {% if user.roles == "ROLE_ADMIN" %}
                     {{ "oui" }}
                 {% else %}
                     {{ "non" }}

@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
@@ -64,7 +64,7 @@ class Users implements UserInterface
 
     /**
      * @var File
-     * @Vich\UploadableField(mapping="miniature", fileNameProperty="filename")
+     * @Vich\UploadableField(mapping="profil", fileNameProperty="filename")
      */
     private $imageFile;
 
@@ -279,4 +279,5 @@ class Users implements UserInterface
 
         return $this;
     }
+
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter!{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
 
@@ -11,7 +11,7 @@
     </div>
     <div class="row">
         <div class="col-12 bg-dark d-flex align-items-center" id="ProfiBar">
-            <div id="UserImage" style="background-image: url{{ vich_uploader_asset(users, 'imageFile') }}"></div>
+            <div id="UserImage" style="background-image: url({{ vich_uploader_asset(users, 'imageFile') }})"></div>
             <p class="text-white ml-5">
                 Bienvenue sur votre profil
                 <span id="profilPseudo">
@@ -46,14 +46,10 @@
                         <p class="col-5">Pseudo: </p>
                         <p id="profilSessionInfos">{{ users.username }}</p>
                     </div>
-                    <div class="profilInfos">
-                        <p class="col-12">Mot de passe: </p>
-                        <p id="profilSessionInfos">***********</p>
-                    </div>
                 </div>
                 <div class="profilInfos">
                     <p class="col-12 mt-4">Photo de profil: </p>
-                    <p id="profilSessionInfos">{{ users.imageFile }}</p>
+                    <p id="profilSessionInfos">{{ users.filename }}</p>
                 </div>
                 <div class="form-group text-center">
                     <a href="{{ path('security_profil', {'view': 'edit'}) }}" class="btn btn-primary col-12 mt-4" name="edit"
@@ -75,14 +71,12 @@
                 </div>
                 <div class="form-group d-flex justify-content-between">
                     <div class="col-5 p-0">{{ form_row(profil_Form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}</div>
-                    <div class="col-5 p-0">{{ form_row(profil_Form.password, {'attr': {'placeholder': '********', 'class': 'form-control'}}) }}</div>
                 </div>
                 <div class="form-group">
                       {{ form_row(profil_Form.imageFile, {'attr': {'class': 'form-control profilInputImage'}}) }}
                 </div>
                 <div class="form-group text-center">
-                   <a href="{{ path('security_profil', {'view': 'view'}) }}" class="btn btn-primary col-12"
-                        id="ProfilFormBtn">Enregistrer</a>
+                    <button type="submit" class="btn btn-primary col-12" id="ProfilFormBtn">Enregistrer</button>
                 </div>
             </div>
             {{ form_end(profil_Form) }}
@@ -94,7 +88,7 @@
             {% for commentaire in users.comments %}
             <div class="row mr-5 ml-5" id="SkateparkCommentaire">
                 <div class="col card-body card mb-3">
-                    <p class="ml-4 ml-lg-0"><strong>{{ commentaire.username }}</strong> le {{ commentaire.createdAt | date('d/M/Y') }}</p>
+                    <p class="ml-4 ml-lg-0"><strong>{{ commentaire.user.username }}</strong> le {{ commentaire.createdAt | date('d/M/Y') }}</p>
                     <p>
                         <div class="ml-3 ml-lg-0 p-lg-0 mt-1 rateYo-{{ commentaire.note }}"></div>
                     </p>
@@ -110,7 +104,7 @@
                     </script>
                     <form class="form-inline">
                         <p class="mt-2 ml-4 ml-lg-0">{{ commentaire.contenu }}</p>
-                        <a class="btn btn-danger ml-auto mr-4 mr-lg-0" href=""><i class="far fa-trash-alt"></i></a>
+                        <a class="btn btn-danger ml-auto mr-4 mr-lg-0" href="{{ path('UserComment_delete', {'id': commentaire.id}) }}"><i class="far fa-trash-alt"></i></a>
                     </form>
                 </div>
             </div>

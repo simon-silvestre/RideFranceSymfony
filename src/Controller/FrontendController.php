@@ -77,8 +77,7 @@ class FrontendController extends AbstractController
             $commentaire->setCreatedAt(new \dateTime())
                         ->setSignaler(0)
                         ->setSkatepark($skatepark)
-                        ->setUser($this->getUser())
-                        ->setUsername($this->getUser()->getUsername());
+                        ->setUser($this->getUser());
             $manager->persist($commentaire);
             $manager->flush();
 
@@ -127,13 +126,28 @@ class FrontendController extends AbstractController
     public function FavorisSkatepark(SkateParks $skatepark, EntityManagerInterface $manager)
     {
         $favoris = new Favoris();
-        $favoris->setSkatepark($skatepark)
+        $favoris->addSkatepark($skatepark)
                 ->setUsername($this->getUser());
     
         $manager->persist($favoris);
         $manager->flush($favoris);
 
         return $this->redirectToRoute('show_skatepark', ['id' => $skatepark->getId()]);
+    }
+
+        /**
+     * @Route("/favoris", name="Skatepark_showFavoris")
+     */
+    public function ShowFavorisSkatepark()
+    {
+        $users = $this->getUser();
+
+        $repo = $this->getDoctrine()->getRepository(Users::class);
+        $User = $repo->find($users);
+
+        return $this->render('frontend/favoris.html.twig',[
+            'user' => $User
+        ]);
     }
     
 }

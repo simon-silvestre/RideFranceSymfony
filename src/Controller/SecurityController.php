@@ -68,17 +68,9 @@ class SecurityController extends AbstractController
 
         $repo = $this->getDoctrine()->getRepository(Users::class);
         $User = $repo->find($users);
+        $update = false;
 
-        if($view == 'view')
-        {
-            $update = false;
-
-            return $this->render('security/profil.html.twig', [
-                'update' => $update,
-                'users' => $User,
-            ]);
-        }
-        elseif($view == 'edit')
+        if($view == 'edit')
         {
             $update = true;
 
@@ -91,7 +83,7 @@ class SecurityController extends AbstractController
                 $manager->persist($User);
                 $manager->flush();
 
-                return $this->redirectToRoute('/profil/view');
+                return $this->redirectToRoute('security_profil', array('view' => $update));
             }
             return $this->render('security/profil.html.twig', [
                 'update' => $update,
@@ -99,6 +91,22 @@ class SecurityController extends AbstractController
                 'profil_Form' => $profil_form->createView()
             ]);
         }
+        return $this->render('security/profil.html.twig', [
+            'update' => $update,
+            'users' => $User,
+        ]);
+    }
+
+      /**
+     * @Route("/profil/view/{id}/delete", name="UserComment_delete")
+     */
+    public function DeleteCommentaire(Comments $Comment)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($Comment);
+        $manager->flush();
+
+       return $this->redirectToRoute('security_profil', array('view' => 'view'));
     }
 
 }

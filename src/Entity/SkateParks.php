@@ -75,6 +75,12 @@ class SkateParks
      */
     private $updateAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Favoris::class, inversedBy="skatepark")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -223,6 +229,18 @@ class SkateParks
     public function setUpdateAt(?\DateTimeInterface $updateAt): self
     {
         $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    public function getFavoris(): ?Favoris
+    {
+        return $this->favoris;
+    }
+
+    public function setFavoris(?Favoris $favoris): self
+    {
+        $this->favoris = $favoris;
 
         return $this;
     }
