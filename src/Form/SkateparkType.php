@@ -33,7 +33,7 @@ class SkateparkType extends AbstractType
             ))
             ->add('ville')
             ->add('contenu')
-            ->add('imageFile', FileType::class)
+            ->add('imageFile', FileType::class, ['required'=>false])
             ->add('adresse')
         ;
     }
