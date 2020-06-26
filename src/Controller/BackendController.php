@@ -33,7 +33,7 @@ class BackendController extends AbstractController
     public function showCommentsGestion()
     {
         $repo = $this->getDoctrine()->getRepository(Comments::class);
-        $commentaires = $repo->findAll();
+        $commentaires = $repo->findBy(array(), array('createdAt' => 'desc'));
 
         return $this->render('backend/commentManager.html.twig', [
             'commentaires' => $commentaires
@@ -47,6 +47,18 @@ class BackendController extends AbstractController
     {
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($comment);
+        $manager->flush();
+
+        return $this->redirectToRoute('CommentsGestion');
+    }
+
+    /**
+     * @Route("/admin/Commentaires/{id}/Approuver", name="Commentaire_approuver")
+     */
+    public function ApprouverCommentaire(Comments $comment, EntityManagerInterface $manager)
+    {
+        $comment->setSignaler('0');
+        $manager->persist($comment);
         $manager->flush();
 
         return $this->redirectToRoute('CommentsGestion');

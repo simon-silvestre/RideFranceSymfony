@@ -91,9 +91,21 @@ class FrontendController extends AbstractController
     }
 
     /**
+     * @Route("/Skatepark/{id}/Signaler", name="Commentaire_signaler")
+     */
+    public function SignalerComment(Comments $comment, EntityManagerInterface $manager)
+    {
+        $comment->setSignaler('1');
+        $manager->persist($comment);
+        $manager->flush();
+
+        return $this->redirectToRoute('ArticlesGestion');
+    }
+
+    /**
      * @Route("/Contact", name="Contact")
      */
-    public function AddEditSkatepark(Request $request, EntityManagerInterface $manager)
+    public function SendSkatepark(Request $request, EntityManagerInterface $manager)
     {
         $skatepark = new SkateParks();
 
@@ -126,7 +138,7 @@ class FrontendController extends AbstractController
     public function FavorisSkatepark(SkateParks $skatepark, EntityManagerInterface $manager)
     {
         $favoris = new Favoris();
-        $favoris->addSkatepark($skatepark)
+        $favoris->setSkatepark($skatepark)
                 ->setUsername($this->getUser());
     
         $manager->persist($favoris);
@@ -146,7 +158,7 @@ class FrontendController extends AbstractController
         $User = $repo->find($users);
 
         return $this->render('frontend/favoris.html.twig',[
-            'user' => $User
+            'user' => $User,
         ]);
     }
     

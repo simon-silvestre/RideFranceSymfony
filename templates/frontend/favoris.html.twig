@@ -8,21 +8,19 @@
 
        {% for favoris in user.favoris %}
         <div class="d-flex align-items-center mt-5 mb-4 mb-lg-0 mx-lg-4 mx-3" id="blogPost">
-            <div id="blogPostImg">
-                <a href=""><img src="assets/MiniatureSkateParks/<?= $skatepark['image'] ?>" alt="skatepark"></a>
-            </div>
+                <a href="{{ path('show_skatepark', {'id': favoris.skatepark.id}) }}" id="blogPostImg"><img src="{{ vich_uploader_asset(favoris.skatepark, 'imageFile') }}" alt="skatepark"></a>
             <div id="postInfo">
                 <div id="blogPostDate">
-                    <span><?=$skatepark['creation_date_fr']?></span>
+                    <span>{{ favoris.skatepark.createdAt | date('d/m/Y') }}</span>
                 </div>
                 <h1 class="text-center text-lg-left" id="blogPostTitle">
-                    {{ favoris.skatepark.ville }}
+                    {{ favoris.skatepark.region }}
                 </h1>
                 <p id="blogPostText">
-                    <?=substr($skatepark['contenu'], 0, 110).'...';?>
+                     {{ favoris.skatepark.contenu | slice(0, 110)}}...
                 </p>
                 <div class="form-inline justify-content-center justify-content-lg-start">
-                    <a href="index.php?action=viewSkatepark&amp;id=<?= $skatepark['id'] ?>" id="blogPostBtn">Voir le skatepark</a>
+                    <a href="{{ path('show_skatepark', {'id': favoris.skatepark.id}) }}" id="blogPostBtn">Voir le skatepark</a>
                 </div>
             </div>
         </div>
