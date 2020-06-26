@@ -57,7 +57,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div class="pagination mt-4">
+        <div class="pagination_numbers ml-auto">
+            {{ knp_pagination_render(skateparks) }}
+        </div>
+    </div>
     <a class="btn mb-5" href="{{ path('Skatepark_add') }}" id="addSkateParkBtn">Ajouter un SkatePark</i></a>
 </div>
 

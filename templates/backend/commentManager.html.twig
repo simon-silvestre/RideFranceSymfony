@@ -79,7 +79,11 @@
     </div>
     {% endif %}
    {% endfor %}
-
+ <div class="pagination mt-4">
+        <div class="pagination_numbers mx-auto">
+            {{ knp_pagination_render(commentaires) }}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

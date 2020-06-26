@@ -234,6 +234,18 @@ section#homeIcon
 
 /************************** Skatepark Région **************************/
 
+.page-item.disabled .page-link, .page-item .page-link  
+{
+    color: #5CAFED!important;
+    background-color: #fff0;
+    border-color: #5CAFED!important;
+}
+
+.page-item.active .page-link {
+    background-color: #fff0;
+    border-color: grey!important;
+}
+
 #listDeTri
 {
     width: 110px!important;

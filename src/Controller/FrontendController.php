@@ -9,6 +9,7 @@ use App\Entity\SkateParks;
 use App\Form\SkateparkType;
 use App\Form\CommentaireType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,10 +53,16 @@ class FrontendController extends AbstractController
     /**
      * @Route("/SkateParksRegion/{region}", name="SkateParksRegion")
      */
-    public function showSkateParksRegion($region)
+    public function showSkateParksRegion($region, Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skatepark = $repo->findBy(array('region' => $region), array('createdAt' => 'desc'));
+        $donnees = $repo->findBy(array('region' => $region), array('createdAt' => 'desc'));
+
+        $skatepark = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            9
+        );
 
         return $this->render('frontend/skateParksRegion.html.twig', [
             'skatepark' => $skatepark

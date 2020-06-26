@@ -7,10 +7,11 @@ use App\Entity\Comments;
 use App\Entity\SkateParks;
 use App\Form\SkateparkType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BackendController extends AbstractController
 {
@@ -30,10 +31,16 @@ class BackendController extends AbstractController
     /**
      * @Route("/admin/Commentaires", name="CommentsGestion")
      */
-    public function showCommentsGestion()
+    public function showCommentsGestion(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(Comments::class);
-        $commentaires = $repo->findBy(array(), array('createdAt' => 'desc'));
+        $donnees = $repo->findBy(array(), array('createdAt' => 'desc'));
+
+        $commentaires = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            4
+        );
 
         return $this->render('backend/commentManager.html.twig', [
             'commentaires' => $commentaires
@@ -67,10 +74,16 @@ class BackendController extends AbstractController
     /**
      * @Route("/admin/Articles", name="ArticlesGestion")
      */
-    public function showArticlesGestion()
+    public function showArticlesGestion(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skateparks = $repo->findAll();
+        $donnees = $repo->findAll();
+
+        $skateparks = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            12
+        );
 
         return $this->render('backend/skateparksManager.html.twig', [
             'skateparks' => $skateparks
