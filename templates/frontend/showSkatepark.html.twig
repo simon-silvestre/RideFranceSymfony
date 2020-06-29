@@ -15,8 +15,11 @@
     {% endfor %}
 
         <div class="ml-auto mt-4 mr-md-5 mr-3" id="favorisIcon">
-            <a href=""><i class="fas fa-heart" id="coeurPlein"></i></a>
+        {% if coeur == 'plein' %}
+            <a href="{{ path('Skatepark_favoris', {'id': skatepark.id}) }}"><i class="fas fa-heart" id="coeurPlein"></i></a>
+        {% else %}
             <a href="{{ path('Skatepark_favoris', {'id': skatepark.id}) }}"><i class="far fa-heart" id="coeurVide"></i></a>
+        {% endif %}
         </div>
     </div>
     <div class="row">

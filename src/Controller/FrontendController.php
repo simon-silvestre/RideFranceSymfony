@@ -74,6 +74,20 @@ class FrontendController extends AbstractController
      */
     public function showSkateparks(Skateparks $skatepark, Request $request, EntityManagerInterface $manager)
     {
+        $skateparkId = $skatepark->getId();
+        $user = $this->getUser();
+
+        $repo = $this->getDoctrine()->getRepository(Favoris::class);
+        $favoris = $repo->findBy(array('skatepark' => $skateparkId, 'username' => $user));
+        if($favoris == false)
+        {
+            $coeur = 'vide';
+        }
+        else
+        {
+            $coeur = 'plein';
+        }
+
         $commentaire = new Comments();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
@@ -94,7 +108,8 @@ class FrontendController extends AbstractController
 
         return $this->render('frontend/showSkatepark.html.twig', [
             'skatepark' => $skatepark,
-            'commentaireForm' => $form->createView()
+            'commentaireForm' => $form->createView(),
+            'coeur' => $coeur
         ]);
     }
 
@@ -134,7 +149,7 @@ class FrontendController extends AbstractController
             $manager->flush();
             $this->addFlash('success', 'Le skatepark à bien été envoyé');
  
-             return $this->redirectToRoute('Contact');
+            return $this->redirectToRoute('Contact');
          }
          return $this->render('frontend/contact.html.twig', [
             /* on passe le formulaire pour la page  */
@@ -172,5 +187,19 @@ class FrontendController extends AbstractController
             'user' => $User,
         ]);
     }
+
+    /**
+     * @Route("/favoris/{id}/delete", name="Favoris_delete")
+     */
+    public function Favorisdelete(Favoris $favoris, EntityManagerInterface $manager)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($favoris);
+        $manager->flush();
+        $this->addFlash('success', 'Le skatepark à bien été supprimé de vos favoris');
+      
+        return $this->redirectToRoute('Skatepark_showFavoris');
+    }
+    
     
 }
