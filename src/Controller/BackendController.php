@@ -29,6 +29,45 @@ class BackendController extends AbstractController
     }
 
     /**
+     * @Route("/admin/Utilisateurs/{id}/Admin", name="UsersGestion_setadmin")
+     */
+    public function SetAdmin(Users $user, EntityManagerInterface $manager)
+    {
+        $user->setRoles(array("ROLE_ADMIN"));
+        $manager->persist($user);
+        $manager->flush();
+        $this->addFlash('success', 'L\'utilisateur à bien reçu le statut d\'administrateur');
+
+        return $this->redirectToRoute('UsersGestion');
+    }
+
+    /**
+     * @Route("/admin/Utilisateurs/{id}/User", name="UsersGestion_setuser")
+     */
+    public function SetUser(Users $user, EntityManagerInterface $manager)
+    {
+        $user->setRoles(array("ROLE_USER"));
+        $manager->persist($user);
+        $manager->flush();
+        $this->addFlash('success', 'L\'administrateur à bien reçu le statut d\'utilisateur');
+
+        return $this->redirectToRoute('UsersGestion');
+    }
+
+      /**
+     * @Route("/admin/Utilisateurs/{id}/delete", name="UsersGestion_delete")
+     */
+    public function DeleteUser(Users $user)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
+        $this->addFlash('success', 'L\'utilisateur à bien été supprimé');
+
+        return $this->redirectToRoute('UsersGestion');
+    }
+
+    /**
      * @Route("/admin/Commentaires", name="CommentsGestion")
      */
     public function showCommentsGestion(Request $request, PaginatorInterface $paginator)

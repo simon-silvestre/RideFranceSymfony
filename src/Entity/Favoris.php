@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use App\Repository\FavorisRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=FavorisRepository::class)
+ * @UniqueEntity(
+ *  fields= {"skatepark", "username"},
+ *  message= "Le skatepark est deja dans vos favoris !"
+ * )
  */
 class Favoris
 {
