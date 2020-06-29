@@ -8,6 +8,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=FavorisRepository::class)
+ *  @ORM\Table(
+ *      uniqueConstraints={@ORM\UniqueConstraint(columns={"skatepark_id", "username_id"})}
+ * )
  * @UniqueEntity(
  *  fields= {"skatepark", "username"},
  *  message= "Le skatepark est deja dans vos favoris !"
@@ -24,7 +27,7 @@ class Favoris
 
     /**
      * @ORM\ManyToOne(targetEntity=SkateParks::class, inversedBy="favoris")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $skatepark;
 
