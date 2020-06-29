@@ -55,6 +55,7 @@ class BackendController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($comment);
         $manager->flush();
+        $this->addFlash('success', 'Le commentaire à bien été supprimé');
 
         return $this->redirectToRoute('CommentsGestion');
     }
@@ -67,6 +68,7 @@ class BackendController extends AbstractController
         $comment->setSignaler('0');
         $manager->persist($comment);
         $manager->flush();
+        $this->addFlash('success', 'Le commentaire à bien été approuvé');
 
         return $this->redirectToRoute('CommentsGestion');
     }
@@ -118,6 +120,7 @@ class BackendController extends AbstractController
             /* On envoi les données dans la bdd */
             $manager->persist($skatepark);
             $manager->flush();
+            $this->addFlash('success', 'Le skatepark à bien été ajouté');
  
              return $this->redirectToRoute('ArticlesGestion');
          }
@@ -135,6 +138,7 @@ class BackendController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($skatepark);
         $manager->flush();
+        $this->addFlash('success', 'Le skatepark à bien été supprimé');
 
         return $this->redirectToRoute('ArticlesGestion');
     }
@@ -147,6 +151,7 @@ class BackendController extends AbstractController
         $skatepark->setValidate('0');
         $manager->persist($skatepark);
         $manager->flush();
+        $this->addFlash('success', 'Le skatepark à bien été ajouté');
 
         return $this->redirectToRoute('ArticlesGestion');
     }

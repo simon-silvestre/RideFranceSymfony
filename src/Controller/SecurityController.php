@@ -36,6 +36,7 @@ class SecurityController extends AbstractController
             /* On envoi les données dans la bdd */
             $manager->persist($user);
             $manager->flush();
+            $this->addFlash('success', 'Merci pour votre inscription ! Vous pouvez maintenant vous connectez');
 
             return $this->redirectToRoute('security_connexion');
         }
@@ -83,7 +84,7 @@ class SecurityController extends AbstractController
                 $manager->persist($User);
                 $manager->flush();
 
-                return $this->redirectToRoute('security_profil', array('view' => $update));
+                return $this->redirectToRoute('security_profil', array('view' => 'view'));
             }
             return $this->render('security/profil.html.twig', [
                 'update' => $update,
@@ -105,6 +106,7 @@ class SecurityController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($Comment);
         $manager->flush();
+        $this->addFlash('success', 'Le commentaire à bien été supprimé');
 
        return $this->redirectToRoute('security_profil', array('view' => 'view'));
     }

@@ -4,8 +4,17 @@
 
 {% block body %}
 
-<div class="container">
-    <table class="table mt-5">
+<div class="container mt-5">
+
+    {% for message in app.flashes('success') %}
+    <div class="mb-3">
+        <div class="alert alert-success position-relative">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <table class="table">
         <thead id="adminTab">
             <tr class="center_form">
                 <th scope="col">Ville</th>
@@ -58,7 +67,7 @@
         </tbody>
     </table>
     <div class="pagination mt-4">
-        <div class="pagination_numbers ml-auto">
+        <div class="pagination_numbers mx-auto">
             {{ knp_pagination_render(skateparks) }}
         </div>
     </div>

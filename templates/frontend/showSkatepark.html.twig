@@ -7,6 +7,13 @@
 <div class="container-fluid">
     {% if app.user %}
     <div class="row">
+    
+     {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
         <div class="ml-auto mt-4 mr-md-5 mr-3" id="favorisIcon">
             <a href=""><i class="fas fa-heart" id="coeurPlein"></i></a>
             <a href="{{ path('Skatepark_favoris', {'id': skatepark.id}) }}"><i class="far fa-heart" id="coeurVide"></i></a>

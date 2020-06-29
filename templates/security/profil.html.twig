@@ -85,6 +85,14 @@
         <div class="col-lg-7 col-12 mt-5 mx-auto">
             <p class="text-center mb-5" id="profilTitle">Mes commentaires</p>
 
+            {% for message in app.flashes('success') %}
+                <div class="mb-3 mr-5 ml-5">
+                    <div class="alert alert-success position-relative">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+
             {% for commentaire in users.comments %}
             <div class="row mr-5 ml-5" id="SkateparkCommentaire">
                 <div class="col card-body card mb-3">

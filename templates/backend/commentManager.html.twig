@@ -6,6 +6,14 @@
 
 
 <div class="container" id="containerCommentaireManager">
+   
+    {% for message in app.flashes('success') %}
+        <div class="mb-3 mr-5 ml-5">
+            <div class="alert alert-success position-relative">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
 
     {% for commentaire in commentaires %}
     {% if commentaire.signaler is same as(true) %}
@@ -49,8 +57,7 @@
     <div class="row mr-5 ml-5" id="SkateparkCommentaire">
         <div class="d-flex flex-row card-body card mb-3">
             <div class="ml-3 ml-lg-0">
-                <div id="UserCommentImage"
-                    style="background-image: url(assets/ProfilImg/"></div>
+                <div id="UserCommentImage" style="background-image: url({{ vich_uploader_asset(commentaire.user, 'imageFile') }})"></div>
             </div>
             <div class="ml-2 col-lg-11">
                 <p class="ml-4 ml-lg-0"><strong>{{ commentaire.user.username }}</strong> le

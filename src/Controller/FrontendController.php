@@ -87,6 +87,7 @@ class FrontendController extends AbstractController
                         ->setUser($this->getUser());
             $manager->persist($commentaire);
             $manager->flush();
+            $this->addFlash('success', 'Le commentaire à bien été ajouté');
 
             return $this->redirectToRoute('show_skatepark', ['id' => $skatepark->getId()]);
         }
@@ -105,6 +106,7 @@ class FrontendController extends AbstractController
         $comment->setSignaler('1');
         $manager->persist($comment);
         $manager->flush();
+        $this->addFlash('success', 'Le commentaire à bien été signalé');
 
         return $this->redirectToRoute('ArticlesGestion');
     }
@@ -130,8 +132,9 @@ class FrontendController extends AbstractController
             /* On envoi les données dans la bdd */
             $manager->persist($skatepark);
             $manager->flush();
+            $this->addFlash('success', 'Le skatepark à bien été envoyé');
  
-             return $this->redirectToRoute('ArticlesGestion');
+             return $this->redirectToRoute('Contact');
          }
          return $this->render('frontend/contact.html.twig', [
             /* on passe le formulaire pour la page  */
@@ -150,7 +153,8 @@ class FrontendController extends AbstractController
     
         $manager->persist($favoris);
         $manager->flush($favoris);
-
+        $this->addFlash('success', 'Le skatepark à bien été ajouté aux favoris');
+      
         return $this->redirectToRoute('show_skatepark', ['id' => $skatepark->getId()]);
     }
 

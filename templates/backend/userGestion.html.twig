@@ -4,8 +4,17 @@
 
 {% block body %}
 
-<div class="container">
-    <table class="table mt-5 border">
+<div class="container mt-5">
+
+  {% for message in app.flashes('success') %}
+    <div class="mb-3">
+        <div class="alert alert-success position-relative">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <table class="table border">
     <thead id="adminTab">
         <tr class="center_form">
         <th scope="col">Pseudo</th>
