@@ -19,6 +19,19 @@ class CommentsRepository extends ServiceEntityRepository
         parent::__construct($registry, Comments::class);
     }
 
+    public function getAvg($skatepark)
+    {
+        $queryAvgScore = $this->createQueryBuilder('g')
+        ->select("avg(g.note) as score_avg")
+        ->where('g.skatepark = :skatepark')
+        ->groupBy('g.skatepark')
+        ->setParameter('skatepark', $skatepark)
+        ->getQuery();
+
+        $avgScore = $queryAvgScore->getResult();
+        return $avgScore[0]["score_avg"];
+    }
+
     // /**
     //  * @return Comments[] Returns an array of Comments objects
     //  */

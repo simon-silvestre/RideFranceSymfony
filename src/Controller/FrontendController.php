@@ -8,6 +8,7 @@ use App\Entity\Comments;
 use App\Entity\SkateParks;
 use App\Form\SkateparkType;
 use App\Form\CommentaireType;
+use App\Repository\CommentsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,20 +66,21 @@ class FrontendController extends AbstractController
         );
 
         return $this->render('frontend/skateParksRegion.html.twig', [
-            'skatepark' => $skatepark
+            'skatepark' => $skatepark,
         ]);
     }
 
     /**
      * @Route("/Skatepark/{id}", name="show_skatepark")
      */
-    public function showSkateparks(Skateparks $skatepark, Request $request, EntityManagerInterface $manager)
+    public function showSkateparks(Skateparks $skatepark, Request $request, EntityManagerInterface $manager, CommentsRepository $commentsRepository)
     {
         $skateparkId = $skatepark->getId();
         $user = $this->getUser();
 
         $repo = $this->getDoctrine()->getRepository(Favoris::class);
         $favoris = $repo->findBy(array('skatepark' => $skateparkId, 'username' => $user));
+        
         if($favoris == false)
         {
             $coeur = 'vide';
@@ -106,11 +108,27 @@ class FrontendController extends AbstractController
             return $this->redirectToRoute('show_skatepark', ['id' => $skatepark->getId()]);
         }
 
-        return $this->render('frontend/showSkatepark.html.twig', [
-            'skatepark' => $skatepark,
-            'commentaireForm' => $form->createView(),
-            'coeur' => $coeur
-        ]);
+        $repo = $this->getDoctrine()->getRepository(Comments::class);
+        $comment = $repo->findBy(array('skatepark' => $skatepark));
+
+        if($comment == null)
+        {
+            return $this->render('frontend/showSkatepark.html.twig', [
+                'skatepark' => $skatepark,
+                'commentaireForm' => $form->createView(),
+                'coeur' => $coeur,
+                'score_avg' => '0'
+            ]);
+        }
+        else 
+        {
+            return $this->render('frontend/showSkatepark.html.twig', [
+                'skatepark' => $skatepark,
+                'commentaireForm' => $form->createView(),
+                'coeur' => $coeur,
+                'score_avg' => $commentsRepository->getAvg($skatepark)
+            ]);
+        }
     }
 
     /**
