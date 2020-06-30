@@ -901,10 +901,10 @@ thead#adminTab
 
     #blogPostImg
     {
-        min-width: 19rem!important;
-        max-width: 19rem!important;
+        min-width: 21rem!important;
+        max-width: 21rem!important;
         height: 8rem!important;
-        transform: translate(0, -3.5rem);
+        transform: translate(0, -3rem);
     }
 
     #listDeTri
@@ -952,8 +952,12 @@ thead#adminTab
     /**************** Actualités ****************/
     .card-description 
     {
-        font-size: 18px!important;
+        font-size: 16px!important;
         line-height: 28px!important;
+    }
+
+    .date-card {
+        font-size: 11px;
     }
 
     #UserImage
@@ -973,7 +977,12 @@ thead#adminTab
     /**************** Skatepark Post ****************/
     #SkateParkTitle h1 
     {
-        font-size: 20px;
+        font-size: 23px;
+    }
+
+    #blogPostImg {
+        min-width: 19rem!important;
+        max-width: 19rem!important;
     }
 }
 
@@ -984,5 +993,10 @@ thead#adminTab
     {
         min-width: 16rem!important;
         max-width: 16rem!important;
+    }
+
+    .imgFile
+    {
+        padding-left: 0!important;
     }
 }

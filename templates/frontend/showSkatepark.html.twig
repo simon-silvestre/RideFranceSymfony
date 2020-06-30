@@ -26,12 +26,12 @@
     {% else %}
     <div class="row mt-5">
     {% endif %}
-        <div class="col-md-5 col-8 ml-md-5 mx-auto text-center text-md-left" id="SkateParkTitle">
+        <div class="col-md-5 col-10 ml-md-5 mx-auto text-center text-md-left" id="SkateParkTitle">
             <h1>Skatepark de <span id="SkateparkName">{{ skatepark.ville }}</span></h1>
         </div>
     </div>
     <div class="row justify-content-between">
-        <div class="col-md-5 col-10 mt-5 ml-md-5 mx-auto" id="SkateParkDescriptionLeft">
+        <div class="col-md-5 col-10 mt-4 ml-md-5 mx-auto" id="SkateParkDescriptionLeft">
             <h2 class="text-center mb-4 ">Description</h2>
             <img src="{{ vich_uploader_asset(skatepark, 'imageFile') }}" alt="..." class="col-12 p-0 m-0">
             <p class="mt-5">{{ skatepark.contenu }}</p>
