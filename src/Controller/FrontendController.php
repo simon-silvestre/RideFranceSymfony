@@ -25,7 +25,7 @@ class FrontendController extends AbstractController
         $users = $this->getUser();
 
         $reposkatepark = $this->getDoctrine()->getRepository(SkateParks::class);
-        $skateparks = $reposkatepark->findBy(array(), array('createdAt' => 'desc'), 3, 0);
+        $skateparks = $reposkatepark->findBy(array('validate' => 0), array('createdAt' => 'desc'), 3, 0);
 
         if($this->getUser())
         {
