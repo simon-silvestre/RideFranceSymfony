@@ -44,10 +44,12 @@
                     <div class="text-right icon_container iconCommentaireManager ml-auto">
                         <a class="btn btn-primary signalercomment"
                             href="{{ path('Commentaire_approuver', {'id': commentaire.id}) }}"><i
-                                class="fas fa-check"></i></a>
+                                class="fas fa-check"></i>
+                        </a>
                         <a class="btn btn-danger mr-4 mr-lg-0 signalercomment"
                             href="{{ path('Commentaire_delete', {'id': commentaire.id}) }}"><i
-                                class="far fa-trash-alt"></i></a>
+                                class="far fa-trash-alt"></i>
+                        </a>
                     </div>
                 </form>
             </div>
@@ -85,7 +87,7 @@
         </div>
     </div>
     {% endif %}
-   {% endfor %}
+    {% endfor %}
  <div class="pagination mt-4">
         <div class="pagination_numbers mx-auto">
             {{ knp_pagination_render(commentaires) }}

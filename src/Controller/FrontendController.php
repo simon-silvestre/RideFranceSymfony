@@ -147,7 +147,7 @@ class FrontendController extends AbstractController
     /**
      * @Route("/Contact", name="Contact")
      */
-    public function SendSkatepark(Request $request, EntityManagerInterface $manager)
+    public function ShowContact(Request $request, EntityManagerInterface $manager)
     {
         $skatepark = new SkateParks();
 
@@ -178,7 +178,7 @@ class FrontendController extends AbstractController
     /**
      * @Route("/Skatepark/{id}/favoris", name="Skatepark_favoris")
      */
-    public function FavorisSkatepark(SkateParks $skatepark, EntityManagerInterface $manager)
+    public function AdddFavoris(SkateParks $skatepark, EntityManagerInterface $manager)
     {
         $favoris = new Favoris();
         $favoris->setSkatepark($skatepark)

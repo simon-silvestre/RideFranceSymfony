@@ -32,34 +32,41 @@
                 <td class="text-center icon_container">
                     <a class="btn btn-warning icon_btn"
                         href="{{ path('show_skatepark', {'id': skatepark.id}) }}"><i
-                            class="far fa-eye"></i></a>
+                            class="far fa-eye"></i>
+                    </a>
                     <a class="btn btn-info icon_btn"
                         href="{{ path('Skatepark_edit', {'id': skatepark.id}) }}"><i
-                            class="far fa-edit"></i></a>
+                            class="far fa-edit"></i>
+                    </a>
                     <a class="btn btn-danger"
                         href="{{ path('Skatepark_delete', {'id': skatepark.id}) }}"><i
-                            class="far fa-trash-alt"></i></a>
-
+                            class="far fa-trash-alt"></i>
+                    </a>
                 </td>
             </tr>
            {% else %}
             <tr class="center_form">
-                <td>{{skatepark.ville}}<p class="text-info SkateparkValide">Non approuvé</p>
+                <td>
+                    {{skatepark.ville}}<p class="text-info SkateparkValide">Non approuvé</p>
                 </td>
                 <td class="text-sm-center">{{skatepark.region}}</td>
                 <td class="text-center icon_container">
                     <a class="btn btn-success icon_btn"
                         href="{{ path('Skatepark_validation', {'id': skatepark.id}) }}"><i
-                            class="far fa-thumbs-up"></i></i></a>
+                            class="far fa-thumbs-up"></i>
+                    </a>
                     <a class="btn btn-warning icon_btn"
                         href="{{ path('show_skatepark', {'id': skatepark.id}) }}"><i
-                            class="far fa-eye"></i></a>
+                            class="far fa-eye"></i>
+                    </a>
                     <a class="btn btn-info icon_btn"
                         href="{{ path('Skatepark_edit', {'id': skatepark.id}) }}"><i
-                            class="far fa-edit"></i></a>
+                            class="far fa-edit"></i>
+                    </a>
                     <a class="btn btn-danger"
                         href="{{ path('Skatepark_delete', {'id': skatepark.id}) }}"><i
-                            class="far fa-trash-alt"></i></a>
+                            class="far fa-trash-alt"></i>
+                    </a>
                 </td>
             </tr>
         {% endif %}

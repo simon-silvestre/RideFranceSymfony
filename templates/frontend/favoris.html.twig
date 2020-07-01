@@ -14,28 +14,31 @@
     {% endfor %}
 
     <div class="row justify-content-around mt-3 pt-4 pt-lg-0">
-
-       {% for favoris in user.favoris %}
-        <div class="d-flex align-items-center mt-5 mb-4 mb-lg-0 mx-lg-4 mx-3" id="blogPost">
-                <a href="{{ path('show_skatepark', {'id': favoris.skatepark.id}) }}" id="blogPostImg"><img src="{{ vich_uploader_asset(favoris.skatepark, 'imageFile') }}" alt="skatepark"></a>
-            <div id="postInfo">
-                <div id="blogPostDate">
-                    <span>{{ favoris.skatepark.createdAt | date('d/m/Y') }}</span>
-                </div>
-                <h1 class="text-center text-lg-left" id="blogPostTitle">
-                    {{ favoris.skatepark.ville }}
-                </h1>
-                <p id="blogPostText">
-                     {{ favoris.skatepark.contenu | slice(0, 110)}}...
-                </p>
-                <div class="form-inline justify-content-center justify-content-lg-start">
-                    <a href="{{ path('show_skatepark', {'id': favoris.skatepark.id}) }}" id="blogPostBtn">Voir le skatepark</a>
-                </div>
-                <div class="form-inline">
-                   <a class="ml-auto" href="{{ path('Favoris_delete', {'id': favoris.id}) }}" onclick="return confirm('Etes-vous sur de votre choix ?');"><i class="far fa-trash-alt"></i></a>
+        {% for favoris in user.favoris %}
+            <div class="d-flex align-items-center mt-5 mb-4 mb-lg-0 mx-lg-4 mx-3" id="blogPost">
+                <a href="{{ path('show_skatepark', {'id': favoris.skatepark.id}) }}" id="blogPostImg">
+                    <img src="{{ vich_uploader_asset(favoris.skatepark, 'imageFile') }}" alt="skatepark_miniature">
+                </a>
+                <div id="postInfo">
+                    <div id="blogPostDate">
+                        <span>{{ favoris.skatepark.createdAt | date('d/m/Y') }}</span>
+                    </div>
+                    <h1 class="text-center text-lg-left" id="blogPostTitle">
+                        {{ favoris.skatepark.ville }}
+                    </h1>
+                    <p id="blogPostText">
+                        {{ favoris.skatepark.contenu | slice(0, 110)}}...
+                    </p>
+                    <div class="form-inline justify-content-center justify-content-lg-start">
+                        <a href="{{ path('show_skatepark', {'id': favoris.skatepark.id}) }}" id="blogPostBtn">Voir le skatepark</a>
+                    </div>
+                    <div class="form-inline">
+                        <a class="ml-auto" href="{{ path('Favoris_delete', {'id': favoris.id}) }}" onclick="return confirm('Etes-vous sur de votre choix ?');">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>

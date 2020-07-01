@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 <div class="form_bg">
     <div class="container-fluid"> 
         <div class="row">
@@ -17,37 +16,36 @@
          <div class="row justify-content-md-around justify-content-center flex-wrap-reverse" id="form_container">
 
         <div class="col-lg-4 col-md-5 col-sm-8 col-11 mt-md-0 mt-5 form_horizontal">
-         {{ form_start(inscription_form) }}
-                    <div class="form_icon"><i class="fa fa-user-circle"></i></div>
-                    <h3 class="title">S'inscrire</h3>
-                    <div class="form_group">
-                        <span class="input-icon"><i class="fa fa-user"></i></span>
-                        {{ form_row(inscription_form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}
-                    </div>
-                    <div class="form_group">
-                        <span class="input-icon"><i class="fa fa-user"></i></span>
-                        {{ form_row(inscription_form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}
-                    </div>
-                    <div class="form_group">
-                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
-                        {{ form_row(inscription_form.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control'}}) }}
-                    </div>
-                    <div class="form_group">
-                        <span class="input-icon"><i class="fas fa-user-circle"></i></span>
-                        {{ form_row(inscription_form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}
-                    </div>
-                    <div class="form_group">
-                        <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        {{ form_row(inscription_form.password, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
-                    </div>
-                    <button type="submit" class="btn signin" name="register">S'inscrire</button>
-        {{ form_end(inscription_form) }}
+            {{ form_start(inscription_form) }}
+                <div class="form_icon"><i class="fa fa-user-circle"></i></div>
+                <h3 class="title">S'inscrire</h3>
+                <div class="form_group">
+                    <span class="input-icon"><i class="fa fa-user"></i></span>
+                    {{ form_row(inscription_form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}
+                </div>
+                 <div class="form_group">
+                    <span class="input-icon"><i class="fa fa-user"></i></span>
+                    {{ form_row(inscription_form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}
+                </div>
+                <div class="form_group">
+                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                    {{ form_row(inscription_form.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control'}}) }}
+                </div>
+                <div class="form_group">
+                    <span class="input-icon"><i class="fas fa-user-circle"></i></span>
+                    {{ form_row(inscription_form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}
+                </div>
+                <div class="form_group">
+                    <span class="input-icon"><i class="fa fa-lock"></i></span>
+                    {{ form_row(inscription_form.password, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
+                </div>
+                <button type="submit" class="btn signin" name="register">S'inscrire</button>
+            {{ form_end(inscription_form) }}
         </div>
 
-
-             <div class="col-lg-4 col-md-5 col-sm-8 col-11">
-                <form class="form_horizontal" action="{{ path('security_Login') }}" method="post">
-                    <div class="form_icon"><i class="fa fa-user-circle"></i></div>
+        <div class="col-lg-4 col-md-5 col-sm-8 col-11">
+            <form class="form_horizontal" action="{{ path('security_Login') }}" method="post">
+                <div class="form_icon"><i class="fa fa-user-circle"></i></div>
                     <h3 class="title">Se connecter</h3>
                     <div class="form_group">
                         <span class="input-icon"><i class="fas fa-user-circle"></i></span>

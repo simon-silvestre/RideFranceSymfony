@@ -15,35 +15,36 @@
     {% endfor %}
 
     <table class="table border">
-    <thead id="adminTab">
-        <tr class="center_form">
-        <th scope="col">Pseudo</th>
-        <th class="text-center" scope="col">Admin</th>
-        <th class="text-center" scope="col">Actions</th>
-        </tr>
-    </thead>
-
-    <tbody id="adminTabRow">
-        {% for user in Users %}
-         <tr class="center_form">
-            <td>{{ user.username }}</td>
-            <td class="text-sm-center">
-            {% for role in user.roles %}
-                {% if role == "ROLE_ADMIN" %}
-                    Administrateur
-                {% elseif role == "ROLE_USER"%}
-                    Utilisateur
-                {% endif %}
-                {% endfor %}
-            </td>
-            <td class="text-center icon_container">
-                <a class="btn btn-success icon_btn" href="{{ path('UsersGestion_setuser', {'id': user.id}) }}"><i class="fas fa-user"></i></a>
-                <a class="btn btn-info icon_btn" href="{{ path('UsersGestion_setadmin', {'id': user.id}) }}"><i class="fas fa-user-shield"></i></a>
-                <a class="btn btn-danger" href="{{ path('UsersGestion_delete', {'id': user.id}) }}"><i class="far fa-trash-alt"></i></a>
-            </td>
-        </tr>
-       {% endfor %}
-    </tbody>
+        <thead id="adminTab">
+            <tr class="center_form">
+            <th scope="col">Pseudo</th>
+            <th class="text-center" scope="col">Admin</th>
+            <th class="text-center" scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="adminTabRow">
+            {% for user in Users %}
+                <tr class="center_form">
+                    <td>
+                        {{ user.username }}
+                    </td>
+                    <td class="text-sm-center">
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_ADMIN" %}
+                                Administrateur
+                            {% elseif role == "ROLE_USER"%}
+                                Utilisateur
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-center icon_container">
+                        <a class="btn btn-success icon_btn" href="{{ path('UsersGestion_setuser', {'id': user.id}) }}"><i class="fas fa-user"></i></a>
+                        <a class="btn btn-info icon_btn" href="{{ path('UsersGestion_setadmin', {'id': user.id}) }}"><i class="fas fa-user-shield"></i></a>
+                        <a class="btn btn-danger" href="{{ path('UsersGestion_delete', {'id': user.id}) }}"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </div>
 

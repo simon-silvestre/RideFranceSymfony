@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\Collection;
@@ -21,7 +22,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *  message= "L'email ou le pseudo que vous avez indiquez est deja utilisé !"
  * )
  */
-class Users implements UserInterface
+class Users implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -279,5 +280,24 @@ class Users implements UserInterface
 
         return $this;
     }
+
+    public function serialize() {
+
+        return serialize(array(
+        $this->id,
+        $this->username,
+        $this->password,
+        ));
+        
+        }
+        
+        public function unserialize($serialized) {
+        
+        list (
+        $this->id,
+        $this->username,
+        $this->password,
+        ) = unserialize($serialized);
+        }
 
 }

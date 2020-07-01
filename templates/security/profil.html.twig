@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 <div class="container-fluid">
     <div class="row" id="profilBanner">
         <img src="../../Images/profilBanner.jpg" alt="skatepark">
@@ -22,69 +21,64 @@
     </div>
     <div class="row">
         <div class="col-lg-3 col-12 mt-5 mx-auto px-5 px-lg-0">
-
             {% if update == false %}
-
-            <div class="mx-auto" id="profilInfosContainer">
-                <p class="text-center" id="profilTitle">Mes informations</p>
-                <div class="d-flex justify-content-between mt-5">
-                    <div class="profilInfos">
-                        <p class="col-5">Nom: </p>
-                        <p id="profilSessionInfos">{{ users.nom }}</p>
+                <div class="mx-auto" id="profilInfosContainer">
+                    <p class="text-center" id="profilTitle">Mes informations</p>
+                    <div class="d-flex justify-content-between mt-5">
+                        <div class="profilInfos">
+                            <p class="col-5">Nom: </p>
+                            <p id="profilSessionInfos">{{ users.nom }}</p>
+                        </div>
+                        <div class="profilInfos">
+                            <p class="col-5">Prénom: </p>
+                            <p id="profilSessionInfos">{{ users.prenom }}</p>
+                        </div>
                     </div>
                     <div class="profilInfos">
-                        <p class="col-5">Prénom: </p>
-                        <p id="profilSessionInfos">{{ users.prenom }}</p>
+                        <p class="col-12 mt-4">E-mail: </p>
+                        <p id="profilSessionInfos">{{ users.email }}</p>
                     </div>
-                </div>
-                <div class="profilInfos">
-                    <p class="col-12 mt-4">E-mail: </p>
-                    <p id="profilSessionInfos">{{ users.email }}</p>
-                </div>
-                <div class="d-flex justify-content-between mt-4">
+                    <div class="d-flex justify-content-between mt-4">
+                        <div class="profilInfos">
+                            <p class="col-5">Pseudo: </p>
+                            <p id="profilSessionInfos">{{ users.username }}</p>
+                        </div>
+                    </div>
                     <div class="profilInfos">
-                        <p class="col-5">Pseudo: </p>
-                        <p id="profilSessionInfos">{{ users.username }}</p>
+                        <p class="col-12 mt-4">Photo de profil: </p>
+                        <p id="profilSessionInfos">{{ users.filename }}</p>
+                    </div>
+                    <div class="form-group text-center">
+                        <a href="{{ path('security_profil', {'view': 'edit'}) }}" class="btn btn-primary col-12 mt-4" name="edit"
+                            id="ProfilFormBtn">Modifier mes informations</a>
                     </div>
                 </div>
-                <div class="profilInfos">
-                    <p class="col-12 mt-4">Photo de profil: </p>
-                    <p id="profilSessionInfos">{{ users.filename }}</p>
-                </div>
-                <div class="form-group text-center">
-                    <a href="{{ path('security_profil', {'view': 'edit'}) }}" class="btn btn-primary col-12 mt-4" name="edit"
-                        id="ProfilFormBtn">Modifier mes informations</a>
-                </div>
-            </div>
-
             {% else %}
-
-            <p class="text-center" id="profilTitle">Mes informations</p>
-            <div class=" mt-5 mx-auto" id="profilInfosContainer">
-                {{ form_start(profil_Form) }}
-                <div class="form-group d-flex justify-content-between mb-4">
-                    <div class="col-5 p-0">{{ form_row(profil_Form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}</div>
-                    <div class="col-5 p-0">{{ form_row(profil_Form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}</div>
+                <p class="text-center" id="profilTitle">Mes informations</p>
+                <div class=" mt-5 mx-auto" id="profilInfosContainer">
+                    {{ form_start(profil_Form) }}
+                        <div class="form-group d-flex justify-content-between mb-4">
+                            <div class="col-5 p-0">{{ form_row(profil_Form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}</div>
+                            <div class="col-5 p-0">{{ form_row(profil_Form.prenom, {'attr': {'placeholder': 'Prénom', 'class': 'form-control'}}) }}</div>
+                        </div>
+                        <div class="form-group mb-4">
+                            {{ form_row(profil_Form.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <div class="col-5 p-0">{{ form_row(profil_Form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}</div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(profil_Form.imageFile, {'attr': {'class': 'form-control profilInputImage'}}) }}
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary col-12" id="ProfilFormBtn">Enregistrer</button>
+                        </div>
+                    {{ form_end(profil_Form) }}
                 </div>
-                <div class="form-group mb-4">
-                   {{ form_row(profil_Form.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control'}}) }}
-                </div>
-                <div class="form-group d-flex justify-content-between">
-                    <div class="col-5 p-0">{{ form_row(profil_Form.username, {'attr': {'placeholder': 'Pseudo', 'class': 'form-control'}}) }}</div>
-                </div>
-                <div class="form-group">
-                      {{ form_row(profil_Form.imageFile, {'attr': {'class': 'form-control profilInputImage'}}) }}
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary col-12" id="ProfilFormBtn">Enregistrer</button>
-                </div>
-            </div>
-            {{ form_end(profil_Form) }}
             {% endif %}
         </div>
         <div class="col-lg-7 col-12 mt-5 mx-auto">
             <p class="text-center mb-5" id="profilTitle">Mes commentaires</p>
-
             {% for message in app.flashes('success') %}
                 <div class="mb-3 mr-5 ml-5">
                     <div class="alert alert-success position-relative">
@@ -94,28 +88,28 @@
             {% endfor %}
 
             {% for commentaire in users.comments %}
-            <div class="row mr-5 ml-5" id="SkateparkCommentaire">
-                <div class="col card-body card mb-3">
-                    <p class="ml-4 ml-lg-0"><strong>{{ commentaire.user.username }}</strong> le {{ commentaire.createdAt | date('d/M/Y') }}</p>
-                    <p>
-                        <div class="ml-3 ml-lg-0 p-lg-0 mt-1 rateYo-{{ commentaire.note }}"></div>
-                    </p>
+                <div class="row mr-5 ml-5" id="SkateparkCommentaire">
+                    <div class="col card-body card mb-3">
+                        <p class="ml-4 ml-lg-0"><strong>{{ commentaire.user.username }}</strong> le {{ commentaire.createdAt | date('d/M/Y') }}</p>
+                        <p>
+                            <div class="ml-3 ml-lg-0 p-lg-0 mt-1 rateYo-{{ commentaire.note }}"></div>
+                        </p>
 
-                    <script>
-                        $(function () {
-                            $(".rateYo-{{ commentaire.note }}").rateYo({
-                                starWidth: "15px",
-                                readOnly: true,
-                                rating: {{ commentaire.note }}
+                        <script>
+                            $(function () {
+                                $(".rateYo-{{ commentaire.note }}").rateYo({
+                                    starWidth: "15px",
+                                    readOnly: true,
+                                    rating: {{ commentaire.note }}
+                                });
                             });
-                        });
-                    </script>
-                    <form class="form-inline">
-                        <p class="mt-2 ml-4 ml-lg-0">{{ commentaire.contenu }}</p>
-                        <a class="btn btn-danger ml-auto mr-4 mr-lg-0" href="{{ path('UserComment_delete', {'id': commentaire.id}) }}"><i class="far fa-trash-alt"></i></a>
-                    </form>
+                        </script>
+                        <form class="form-inline">
+                            <p class="mt-2 ml-4 ml-lg-0">{{ commentaire.contenu }}</p>
+                            <a class="btn btn-danger ml-auto mr-4 mr-lg-0" href="{{ path('UserComment_delete', {'id': commentaire.id}) }}"><i class="far fa-trash-alt"></i></a>
+                        </form>
+                    </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
