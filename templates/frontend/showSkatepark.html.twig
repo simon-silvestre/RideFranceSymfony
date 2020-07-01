@@ -86,6 +86,7 @@
     </div>
 
     {% for commentaire in skatepark.Comments %}
+    {% if commentaire.signaler is same as(false) %}
     <div class="row mr-5 ml-5" id="SkateparkCommentaire">
         <div class="d-flex flex-row card-body card mb-3">
             <div class="ml-3 ml-lg-0">
@@ -115,6 +116,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     {% endfor %}
 </div>
 </div>

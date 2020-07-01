@@ -141,7 +141,7 @@ class FrontendController extends AbstractController
         $manager->flush();
         $this->addFlash('success', 'Le commentaire à bien été signalé');
 
-        return $this->redirectToRoute('ArticlesGestion');
+        return $this->redirectToRoute('show_skatepark', ['id' => $comment->getSkatepark()->getId()]);
     }
 
     /**
