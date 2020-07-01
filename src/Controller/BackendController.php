@@ -73,7 +73,7 @@ class BackendController extends AbstractController
     public function showCommentsGestion(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(Comments::class);
-        $donnees = $repo->findBy(array(), array('createdAt' => 'desc'));
+        $donnees = $repo->findBy(array(), array('signaler' => 'desc', 'createdAt' => 'desc'));
 
         $commentaires = $paginator->paginate(
             $donnees,
