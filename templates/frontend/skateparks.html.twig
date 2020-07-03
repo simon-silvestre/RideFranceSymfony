@@ -1,22 +1,22 @@
 
 {% for skatepark in skatepark %}
-            {% if skatepark.validate is same as(false) %}
-                <div class="d-flex align-items-center mt-5 mb-4 mt-lg-4 mb-lg-4 mx-lg-4 mx-3" id="blogPost">
-                        <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="blogPostImg"><img src="{{ vich_uploader_asset(skatepark, 'imageFile') }}" alt="skatepark"></a>
-                    <div id="postInfo">
-                        <div id="blogPostDate">
-                            <span>10/Juin/2020</span>
-                        </div>
-                        <h1 class="text-center text-lg-left" id="blogPostTitle">
-                            {{ skatepark.ville }}
-                        </h1>
-                        <p id="blogPostText">
-                            {{ skatepark.contenu | slice(0, 110)}}...
-                        </p>
-                        <div class="form-inline justify-content-center justify-content-lg-start">
-                            <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="blogPostBtn">Voir le skatepark</a>
-                        </div>
-                    </div>
+    {% if skatepark.validate is same as(false) %}
+        <div class="d-flex align-items-center mt-5 mb-4 mt-lg-4 mb-lg-4 mx-lg-4 mx-3" id="blogPost">
+                <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="blogPostImg"><img src="{{ vich_uploader_asset(skatepark, 'imageFile') }}" alt="skatepark"></a>
+            <div id="postInfo">
+                <div id="blogPostDate">
+                    <span>10/Juin/2020</span>
                 </div>
-            {% endif %}
-       {% endfor %}
+                <h1 class="text-center text-lg-left" id="blogPostTitle">
+                    {{ skatepark.ville }}
+                </h1>
+                <p id="blogPostText">
+                    {{ skatepark.contenu | slice(0, 110)}}...
+                </p>
+                 <div class="form-inline justify-content-center justify-content-lg-start">
+                    <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="blogPostBtn">Voir le skatepark</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}

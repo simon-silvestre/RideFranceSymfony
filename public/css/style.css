@@ -235,11 +235,11 @@ section#homeIcon
 
 /************************** Skatepark Région **************************/
 
-.sortable-style
+.translucide-bouton
 {
-    color: #5CAFED!important;
+    color: #5CAFED;
     background-color: #fff0;
-    border-color: #5CAFED!important;
+    border-color: #5CAFED;
 }
 
 .page-item.disabled .page-link, .page-item .page-link  
@@ -877,11 +877,6 @@ thead#adminTab
         width: 25%!important;
     }
 
-    .iconCommentaireManager
-    {
-        width: 32%!important;
-    }
-
     /**************** LoginPage ****************/
     #form_container
     {
@@ -944,6 +939,11 @@ thead#adminTab
         text-align: center;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    #UserCommentImage {
+        width: 50px;
+        height: 50px;
     }
 }
 

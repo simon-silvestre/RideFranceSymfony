@@ -85,10 +85,10 @@
         {% if commentaire.signaler is same as(false) %}
             <div class="row mr-5 ml-5" id="SkateparkCommentaire">
                 <div class="d-flex flex-row card-body card mb-3">
-                    <div class="ml-3 ml-lg-0">
+                    <div class="ml-md-3 ml-lg-0">
                         <div id="UserCommentImage" style="background-image: url({{ vich_uploader_asset(commentaire.user, 'imageFile') }})"></div>
                     </div>
-                    <div class="ml-2 col-lg-11">
+                    <div class="ml-sm-2 col-lg-11">
                         <p class="ml-2 ml-lg-0"><strong>{{ commentaire.user.username }}</strong> le {{ commentaire.createdAt | date('d/m/Y') }}</p>
                         <p>
                             <div class="p-lg-0 mt-1 rateYo-{{ commentaire.note }}"></div>
@@ -102,9 +102,9 @@
                                 });
                             });
                         </script>
-                        <form class="form-inline flex-nowrap">
+                        <form class="form-inline">
                             <p class="mt-2 ml-2 ml-lg-0"> {{ commentaire.contenu }}</p>
-                            <a class="btn btn-danger ml-auto mr-4 mr-lg-0 signalercomment"
+                            <a class="btn translucide-bouton ml-auto signalercomment"
                                 href="{{ path('Commentaire_signaler', {'id': commentaire.id}) }}"><i
                                     class="fas fa-exclamation"></i></a>
                         </form>
