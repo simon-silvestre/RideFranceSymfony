@@ -14,6 +14,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FrontendController extends AbstractController
 {
@@ -64,6 +65,14 @@ class FrontendController extends AbstractController
             $request->query->getInt('page', 1),
             9
         );
+
+        if($request->isXmlHttpRequest()) 
+        {
+            return new JsonResponse([
+                'content' => $this->renderView('frontend/skateparks.html.twig', ['skatepark' => $skatepark]),
+                'sorting' => $this->renderView('frontend/sorting.html.twig', ['skatepark' => $skatepark])
+            ]);
+        }
 
         return $this->render('frontend/skateParksRegion.html.twig', [
             'skatepark' => $skatepark,
