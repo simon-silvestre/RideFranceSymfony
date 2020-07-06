@@ -77,8 +77,9 @@
                     <form class="form-inline">
                         <p class="mt-2 ml-2 ml-lg-0"> {{ commentaire.contenu }}</p>
                         <a class="btn translucide-bouton ml-auto signalercomment"
-                            href="{{ path('Commentaire_signaler', {'id': commentaire.id}) }}"><i
-                                class="fas fa-exclamation"></i></a>
+                            href="{{ path('Commentaire_delete', {'id': commentaire.id}) }}"><i
+                               class="far fa-trash-alt"></i>
+                        </a>
                     </form>
                 </div>
             </div>

@@ -5,7 +5,7 @@
                 <a href="{{ path('show_skatepark', {'id': skatepark.id}) }}" id="blogPostImg"><img src="{{ vich_uploader_asset(skatepark, 'imageFile') }}" alt="skatepark"></a>
             <div id="postInfo">
                 <div id="blogPostDate">
-                    <span>10/Juin/2020</span>
+                    <span>{{ skatepark.createdAt | date('d/m/Y') }}</span>
                 </div>
                 <h1 class="text-center text-lg-left" id="blogPostTitle">
                     {{ skatepark.ville }}
